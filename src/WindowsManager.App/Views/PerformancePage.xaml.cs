@@ -1,14 +1,25 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Threading;
 using WindowsManager.App.Services;
 
 namespace WindowsManager.App.Views
 {
     public partial class PerformancePage : UserControl
     {
+        private readonly DispatcherTimer _statusHideTimer;
+
         public PerformancePage()
         {
             InitializeComponent();
+
+            _statusHideTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(4) };
+            _statusHideTimer.Tick += (_, _) =>
+            {
+                StatusBar.Visibility = Visibility.Collapsed;
+                _statusHideTimer.Stop();
+            };
 
             LoadPowerPlans();
             LoadStartupItems();
@@ -29,7 +40,6 @@ namespace WindowsManager.App.Views
             {
                 panel.Children.Add(NotAvailableText());
                 PowerPlanList.Items.Clear();
-                PowerPlanList.ItemsSource = null;
                 PowerPlanList.Items.Add(panel);
                 return;
             }
@@ -43,13 +53,13 @@ namespace WindowsManager.App.Views
                     IsChecked = plan.IsActive,
                     Tag = plan.Guid,
                     Margin = new Thickness(0, 4, 0, 4),
-                    Foreground = (System.Windows.Media.Brush)FindResource("PrimaryTextBrush"),
+                    Foreground = (Brush)FindResource("PrimaryTextBrush"),
                 };
                 radio.Checked += (_, _) =>
                 {
                     if (radio.Tag is string guid)
                     {
-                        try { PowerPlanService.SetActive(guid); } catch { /* best effort */ }
+                        RunWithFeedback(() => PowerPlanService.SetActive(guid));
                     }
                 };
                 panel.Children.Add(radio);
@@ -59,33 +69,42 @@ namespace WindowsManager.App.Views
             PowerPlanList.Items.Add(panel);
         }
 
-        private void LoadStartupItems()
+        private async void LoadStartupItems()
         {
-            var panel = new StackPanel();
+            StartupLoadingText.Visibility = Visibility.Visible;
+            StartupList.Visibility = Visibility.Collapsed;
 
-            List<StartupItem> items;
+            List<StartupItem>? items = null;
             try
             {
-                items = StartupService.GetStartupItems();
+                items = await Task.Run(StartupService.GetStartupItems);
             }
             catch
             {
-                panel.Children.Add(NotAvailableText());
-                StartupList.Items.Clear();
-                StartupList.Items.Add(panel);
-                return;
+                // handled below via null check
             }
 
-            foreach (var item in items)
+            var panel = new StackPanel();
+
+            if (items is null)
             {
-                panel.Children.Add(BuildToggleRow(item.Name, item.IsEnabled, isEnabled =>
+                panel.Children.Add(NotAvailableText());
+            }
+            else
+            {
+                foreach (var item in items)
                 {
-                    try { StartupService.SetEnabled(item, isEnabled); } catch { /* best effort */ }
-                }));
+                    panel.Children.Add(BuildToggleRow(item.Name, item.IsEnabled, isEnabled =>
+                    {
+                        RunWithFeedback(() => StartupService.SetEnabled(item, isEnabled));
+                    }));
+                }
             }
 
             StartupList.Items.Clear();
             StartupList.Items.Add(panel);
+            StartupLoadingText.Visibility = Visibility.Collapsed;
+            StartupList.Visibility = Visibility.Visible;
         }
 
         private void LoadVisualEffectsState()
@@ -100,40 +119,62 @@ namespace WindowsManager.App.Views
             }
         }
 
-        private void LoadServices()
+        private async void LoadServices()
         {
-            var panel = new StackPanel();
+            ServicesLoadingText.Visibility = Visibility.Visible;
+            ServicesList.Visibility = Visibility.Collapsed;
 
-            List<ManagedServiceInfo> services;
+            List<ManagedServiceInfo>? services = null;
             try
             {
-                services = WindowsServiceManager.GetServices();
+                services = await Task.Run(WindowsServiceManager.GetServices);
             }
             catch
             {
-                panel.Children.Add(NotAvailableText());
-                ServicesList.Items.Clear();
-                ServicesList.Items.Add(panel);
-                return;
+                // handled below via null check
             }
 
-            foreach (var service in services)
-            {
-                if (!service.Exists)
-                {
-                    continue;
-                }
+            var panel = new StackPanel();
 
-                var isEnabled = service.StartMode != System.ServiceProcess.ServiceStartMode.Disabled;
-                var row = BuildToggleRow($"{service.DisplayName} ({service.Status})", isEnabled, enabled =>
+            if (services is null)
+            {
+                panel.Children.Add(NotAvailableText());
+            }
+            else
+            {
+                foreach (var service in services)
                 {
-                    try { WindowsServiceManager.SetEnabled(service.ServiceName, enabled); } catch { /* best effort */ }
-                });
-                panel.Children.Add(row);
+                    if (!service.Exists)
+                    {
+                        continue;
+                    }
+
+                    var isEnabled = service.StartMode != System.ServiceProcess.ServiceStartMode.Disabled;
+                    var row = BuildToggleRow($"{service.DisplayName} ({service.Status})", isEnabled, enabled =>
+                    {
+                        if (!enabled)
+                        {
+                            var message = string.Format((string)FindResource("Confirm_DisableService_Message"), service.DisplayName);
+                            var title = (string)FindResource("Confirm_DisableService_Title");
+                            var result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                            if (result != MessageBoxResult.Yes)
+                            {
+                                // User cancelled - revert the toggle back to enabled.
+                                LoadServices();
+                                return;
+                            }
+                        }
+
+                        RunWithFeedback(() => WindowsServiceManager.SetEnabled(service.ServiceName, enabled));
+                    });
+                    panel.Children.Add(row);
+                }
             }
 
             ServicesList.Items.Clear();
             ServicesList.Items.Add(panel);
+            ServicesLoadingText.Visibility = Visibility.Collapsed;
+            ServicesList.Visibility = Visibility.Visible;
         }
 
         private FrameworkElement BuildToggleRow(string label, bool isChecked, Action<bool> onToggled)
@@ -146,7 +187,7 @@ namespace WindowsManager.App.Views
             {
                 Text = label,
                 VerticalAlignment = VerticalAlignment.Center,
-                Foreground = (System.Windows.Media.Brush)FindResource("PrimaryTextBrush"),
+                Foreground = (Brush)FindResource("PrimaryTextBrush"),
                 TextWrapping = TextWrapping.Wrap,
             };
             Grid.SetColumn(text, 0);
@@ -168,8 +209,36 @@ namespace WindowsManager.App.Views
         private TextBlock NotAvailableText() => new()
         {
             Text = (string)FindResource("Common_NotAvailable"),
-            Foreground = (System.Windows.Media.Brush)FindResource("SecondaryTextBrush"),
+            Foreground = (Brush)FindResource("SecondaryTextBrush"),
         };
+
+        /// <summary>
+        /// Runs an action and shows a temporary success/error status message at the bottom of the page.
+        /// </summary>
+        private void RunWithFeedback(Action action)
+        {
+            try
+            {
+                action();
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void ShowStatus(string message, bool success)
+        {
+            StatusText.Text = message;
+            StatusText.Foreground = success
+                ? new SolidColorBrush(Color.FromRgb(0x4C, 0xAF, 0x50))
+                : new SolidColorBrush(Color.FromRgb(0xE5, 0x53, 0x53));
+            StatusBar.Visibility = Visibility.Visible;
+
+            _statusHideTimer.Stop();
+            _statusHideTimer.Start();
+        }
 
         private void RefreshStartup_Click(object sender, RoutedEventArgs e) => LoadStartupItems();
 
@@ -177,27 +246,22 @@ namespace WindowsManager.App.Views
 
         private void VisualEffectsToggle_Click(object sender, RoutedEventArgs e)
         {
+            var enabled = VisualEffectsToggle.IsChecked == true;
             try
             {
-                VisualEffectsService.SetBestPerformanceMode(VisualEffectsToggle.IsChecked == true);
+                VisualEffectsService.SetBestPerformanceMode(enabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
             }
             catch
             {
-                // best effort - revert UI if it failed
-                VisualEffectsToggle.IsChecked = VisualEffectsService.IsBestPerformanceModeEnabled();
+                VisualEffectsToggle.IsChecked = !enabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
             }
         }
 
         private void DiskCleanup_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                DiskCleanupService.LaunchDiskCleanup();
-            }
-            catch
-            {
-                // best effort
-            }
+            RunWithFeedback(() => DiskCleanupService.LaunchDiskCleanup());
         }
     }
 }

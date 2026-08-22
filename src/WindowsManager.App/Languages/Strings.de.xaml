@@ -47,5 +47,12 @@
 
     <sys:String x:Key="Common_Refresh">Aktualisieren</sys:String>
     <sys:String x:Key="Common_NotAvailable">Auf diesem System nicht verfügbar</sys:String>
+    <sys:String x:Key="Common_Loading">Wird geladen…</sys:String>
+
+    <sys:String x:Key="Confirm_DisableService_Title">Dienst deaktivieren?</sys:String>
+    <sys:String x:Key="Confirm_DisableService_Message">Möchtest du "{0}" wirklich deaktivieren? Zugehörige Windows-Funktionen könnten nicht mehr funktionieren. Du kannst den Dienst jederzeit wieder aktivieren.</sys:String>
+
+    <sys:String x:Key="Status_Success">Änderung erfolgreich übernommen.</sys:String>
+    <sys:String x:Key="Status_Error">Etwas ist schiefgelaufen. Die Änderung wurde möglicherweise nicht übernommen.</sys:String>
 
 </ResourceDictionary>

@@ -47,5 +47,12 @@
 
     <sys:String x:Key="Common_Refresh">Refresh</sys:String>
     <sys:String x:Key="Common_NotAvailable">Not available on this system</sys:String>
+    <sys:String x:Key="Common_Loading">Loading…</sys:String>
+
+    <sys:String x:Key="Confirm_DisableService_Title">Disable service?</sys:String>
+    <sys:String x:Key="Confirm_DisableService_Message">Are you sure you want to disable "{0}"? Related Windows features may stop working. You can re-enable it anytime.</sys:String>
+
+    <sys:String x:Key="Status_Success">Change applied successfully.</sys:String>
+    <sys:String x:Key="Status_Error">Something went wrong. The change may not have been applied.</sys:String>
 
 </ResourceDictionary>
