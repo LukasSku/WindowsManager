@@ -5,6 +5,7 @@
     <sys:String x:Key="Nav_Dashboard">Dashboard</sys:String>
     <sys:String x:Key="Nav_Performance">Performance</sys:String>
     <sys:String x:Key="Nav_Privacy">Privacy</sys:String>
+    <sys:String x:Key="Nav_AppManager">App Manager</sys:String>
 
     <sys:String x:Key="AppTitle">Windows Manager</sys:String>
 
@@ -134,5 +135,29 @@
 
     <sys:String x:Key="Status_Success">Change applied successfully.</sys:String>
     <sys:String x:Key="Status_Error">Something went wrong. The change may not have been applied.</sys:String>
+
+    <!-- App Manager page -->
+    <sys:String x:Key="AppManager_Title">App Manager</sys:String>
+    <sys:String x:Key="AppManager_Subtitle">Install new software and remove apps you no longer need.</sys:String>
+
+    <sys:String x:Key="AppManager_Install_Title">Install Software</sys:String>
+    <sys:String x:Key="AppManager_Install_Desc">Search the winget package catalog and install apps directly.</sys:String>
+    <sys:String x:Key="AppManager_Install_Help">Uses "winget" (Windows Package Manager, built into Windows 11) to search Microsoft's official app catalog and install the selected app silently in the background - no need to open a browser and download an installer manually.</sys:String>
+    <sys:String x:Key="AppManager_SearchPlaceholder">Search for an app (e.g. "VLC")…</sys:String>
+    <sys:String x:Key="AppManager_SearchButton">Search</sys:String>
+    <sys:String x:Key="AppManager_InstallButton">Install</sys:String>
+    <sys:String x:Key="AppManager_Installing">Installing…</sys:String>
+    <sys:String x:Key="AppManager_NoResults">No matching packages found.</sys:String>
+    <sys:String x:Key="AppManager_WingetNotAvailable">winget was not found on this system. It ships with Windows 11 by default - try updating "App Installer" from the Microsoft Store.</sys:String>
+
+    <sys:String x:Key="AppManager_Installed_Title">Installed Applications</sys:String>
+    <sys:String x:Key="AppManager_Installed_Desc">View and uninstall programs currently installed on this PC.</sys:String>
+    <sys:String x:Key="AppManager_Installed_Help">Lists desktop applications the same way Windows' own "Apps &amp; Features" does, reading each program's uninstaller information from the registry. Uninstalling launches that program's own uninstaller (some show their own confirmation window).</sys:String>
+    <sys:String x:Key="AppManager_FilterPlaceholder">Filter installed apps…</sys:String>
+    <sys:String x:Key="AppManager_UninstallButton">Uninstall</sys:String>
+    <sys:String x:Key="AppManager_UninstallStarted">Uninstaller started. Follow any on-screen prompts to finish.</sys:String>
+
+    <sys:String x:Key="Confirm_Uninstall_Title">Uninstall application?</sys:String>
+    <sys:String x:Key="Confirm_Uninstall_Message">Are you sure you want to uninstall "{0}"? This will launch the app's own uninstaller.</sys:String>
 
 </ResourceDictionary>

@@ -34,6 +34,11 @@ public partial class MainWindow : Window
         if (ContentArea != null) ContentArea.Content = new PrivacyPage();
     }
 
+    private void NavAppManager_Checked(object sender, RoutedEventArgs e)
+    {
+        if (ContentArea != null) ContentArea.Content = new AppManagerPage();
+    }
+
     private void ThemeToggleButton_Click(object sender, RoutedEventArgs e)
     {
         ThemeManager.ToggleTheme();

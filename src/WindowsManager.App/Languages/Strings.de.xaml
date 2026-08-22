@@ -5,6 +5,7 @@
     <sys:String x:Key="Nav_Dashboard">Übersicht</sys:String>
     <sys:String x:Key="Nav_Performance">Leistung</sys:String>
     <sys:String x:Key="Nav_Privacy">Datenschutz</sys:String>
+    <sys:String x:Key="Nav_AppManager">App-Verwaltung</sys:String>
 
     <sys:String x:Key="AppTitle">Windows Manager</sys:String>
 
@@ -134,5 +135,29 @@
 
     <sys:String x:Key="Status_Success">Änderung erfolgreich übernommen.</sys:String>
     <sys:String x:Key="Status_Error">Etwas ist schiefgelaufen. Die Änderung wurde möglicherweise nicht übernommen.</sys:String>
+
+    <!-- App-Verwaltung -->
+    <sys:String x:Key="AppManager_Title">App-Verwaltung</sys:String>
+    <sys:String x:Key="AppManager_Subtitle">Installiere neue Software und entferne Programme, die du nicht mehr brauchst.</sys:String>
+
+    <sys:String x:Key="AppManager_Install_Title">Software installieren</sys:String>
+    <sys:String x:Key="AppManager_Install_Desc">Durchsuche den winget-Paketkatalog und installiere Apps direkt.</sys:String>
+    <sys:String x:Key="AppManager_Install_Help">Nutzt "winget" (Windows Package Manager, in Windows 11 integriert), um Microsofts offiziellen App-Katalog zu durchsuchen und die ausgewählte App im Hintergrund still zu installieren - kein manuelles Herunterladen eines Installers über den Browser nötig.</sys:String>
+    <sys:String x:Key="AppManager_SearchPlaceholder">App suchen (z. B. "VLC")…</sys:String>
+    <sys:String x:Key="AppManager_SearchButton">Suchen</sys:String>
+    <sys:String x:Key="AppManager_InstallButton">Installieren</sys:String>
+    <sys:String x:Key="AppManager_Installing">Wird installiert…</sys:String>
+    <sys:String x:Key="AppManager_NoResults">Keine passenden Pakete gefunden.</sys:String>
+    <sys:String x:Key="AppManager_WingetNotAvailable">winget wurde auf diesem System nicht gefunden. Es ist standardmäßig in Windows 11 enthalten - versuche "App Installer" über den Microsoft Store zu aktualisieren.</sys:String>
+
+    <sys:String x:Key="AppManager_Installed_Title">Installierte Programme</sys:String>
+    <sys:String x:Key="AppManager_Installed_Desc">Zeige installierte Programme an und deinstalliere sie bei Bedarf.</sys:String>
+    <sys:String x:Key="AppManager_Installed_Help">Listet Desktop-Anwendungen genauso auf wie Windows' eigenes "Apps &amp; Features", indem die Deinstallationsinfos jedes Programms aus der Registry gelesen werden. Deinstallieren startet den eigenen Deinstaller des Programms (manche zeigen dabei eine eigene Bestätigung an).</sys:String>
+    <sys:String x:Key="AppManager_FilterPlaceholder">Installierte Apps filtern…</sys:String>
+    <sys:String x:Key="AppManager_UninstallButton">Deinstallieren</sys:String>
+    <sys:String x:Key="AppManager_UninstallStarted">Deinstallation gestartet. Folge ggf. weiteren Anweisungen auf dem Bildschirm.</sys:String>
+
+    <sys:String x:Key="Confirm_Uninstall_Title">Programm deinstallieren?</sys:String>
+    <sys:String x:Key="Confirm_Uninstall_Message">Möchtest du "{0}" wirklich deinstallieren? Dies startet den eigenen Deinstaller des Programms.</sys:String>
 
 </ResourceDictionary>
