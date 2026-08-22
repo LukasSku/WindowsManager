@@ -431,3 +431,6 @@ FodyWeavers.xsd
 # Custom
 .vs/
 
+
+# Local-only Copilot instructions (kept out of the public repo on purpose)
+.github/copilot-instructions.md
