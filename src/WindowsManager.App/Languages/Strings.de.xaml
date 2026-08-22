@@ -26,4 +26,26 @@
     <sys:String x:Key="ThemeToggle_Tooltip">Dunklen / hellen Modus umschalten</sys:String>
     <sys:String x:Key="LanguageToggle_Tooltip">Sprache ändern</sys:String>
 
+    <!-- Leistungsseite -->
+    <sys:String x:Key="Perf_PowerPlan_Title">Energieplan</sys:String>
+    <sys:String x:Key="Perf_PowerPlan_Desc">Lege fest, wie Windows Leistung und Energieverbrauch abwägt.</sys:String>
+
+    <sys:String x:Key="Perf_Startup_Title">Autostart-Programme</sys:String>
+    <sys:String x:Key="Perf_Startup_Desc">Aktiviere oder deaktiviere Programme, die automatisch mit Windows starten.</sys:String>
+
+    <sys:String x:Key="Perf_VisualEffects_Title">Visuelle Effekte</sys:String>
+    <sys:String x:Key="Perf_VisualEffects_Desc">Reduziere Animationen und Transparenz für maximale Leistung.</sys:String>
+    <sys:String x:Key="Perf_VisualEffects_Toggle">Modus für beste Leistung</sys:String>
+
+    <sys:String x:Key="Perf_Services_Title">Windows-Dienste</sys:String>
+    <sys:String x:Key="Perf_Services_Desc">Deaktiviere nicht benötigte Hintergrunddienste. Es werden nur bekannte, sichere Dienste angezeigt.</sys:String>
+    <sys:String x:Key="Perf_Services_Warning">Das Deaktivieren von Diensten kann zugehörige Windows-Funktionen beeinträchtigen. Du kannst sie jederzeit wieder aktivieren.</sys:String>
+
+    <sys:String x:Key="Perf_DiskCleanup_Title">Datenträgerbereinigung</sys:String>
+    <sys:String x:Key="Perf_DiskCleanup_Desc">Gib Speicherplatz frei, indem du temporäre und unnötige Dateien entfernst.</sys:String>
+    <sys:String x:Key="Perf_DiskCleanup_Button">Datenträgerbereinigung öffnen</sys:String>
+
+    <sys:String x:Key="Common_Refresh">Aktualisieren</sys:String>
+    <sys:String x:Key="Common_NotAvailable">Auf diesem System nicht verfügbar</sys:String>
+
 </ResourceDictionary>

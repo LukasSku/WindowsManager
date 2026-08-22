@@ -4,16 +4,112 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
-    <StackPanel Margin="32">
-        <TextBlock Text="{DynamicResource Performance_Title}"
-                   FontSize="28" FontWeight="SemiBold"
-                   Foreground="{DynamicResource PrimaryTextBrush}" />
-        <TextBlock Text="{DynamicResource Performance_Subtitle}"
-                   FontSize="14" Margin="0,4,0,20"
-                   Foreground="{DynamicResource SecondaryTextBrush}" />
-        <Border Style="{StaticResource CardStyle}">
-            <TextBlock Text="{DynamicResource ComingSoon}"
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32">
+            <TextBlock Text="{DynamicResource Performance_Title}"
+                       FontSize="28" FontWeight="SemiBold"
+                       Foreground="{DynamicResource PrimaryTextBrush}" />
+            <TextBlock Text="{DynamicResource Performance_Subtitle}"
+                       FontSize="14" Margin="0,4,0,20"
                        Foreground="{DynamicResource SecondaryTextBrush}" />
-        </Border>
-    </StackPanel>
+
+            <!-- Power Plan -->
+            <Border Style="{StaticResource CardStyle}">
+                <StackPanel>
+                    <TextBlock Text="{DynamicResource Perf_PowerPlan_Title}" FontSize="16" FontWeight="SemiBold"
+                               Foreground="{DynamicResource PrimaryTextBrush}" />
+                    <TextBlock Text="{DynamicResource Perf_PowerPlan_Desc}" FontSize="12" Margin="0,2,0,10"
+                               Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                    <ItemsControl x:Name="PowerPlanList" />
+                </StackPanel>
+            </Border>
+
+            <!-- Startup Programs -->
+            <Border Style="{StaticResource CardStyle}">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="{DynamicResource Perf_Startup_Title}" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <TextBlock Text="{DynamicResource Perf_Startup_Desc}" FontSize="12" Margin="0,2,0,10"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="1" Content="{DynamicResource Common_Refresh}"
+                                Style="{StaticResource TopBarButtonStyle}" Width="Auto" Padding="10,0"
+                                Click="RefreshStartup_Click" VerticalAlignment="Top" />
+                    </Grid>
+                    <ItemsControl x:Name="StartupList" />
+                </StackPanel>
+            </Border>
+
+            <!-- Visual Effects -->
+            <Border Style="{StaticResource CardStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="{DynamicResource Perf_VisualEffects_Title}" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource PrimaryTextBrush}" />
+                        <TextBlock Text="{DynamicResource Perf_VisualEffects_Desc}" FontSize="12" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="{DynamicResource Perf_VisualEffects_Toggle}" Margin="0,0,10,0"
+                                   Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
+                        <CheckBox x:Name="VisualEffectsToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                  Click="VisualEffectsToggle_Click" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Windows Services -->
+            <Border Style="{StaticResource CardStyle}">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="{DynamicResource Perf_Services_Title}" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <TextBlock Text="{DynamicResource Perf_Services_Desc}" FontSize="12" Margin="0,2,0,4"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                            <TextBlock Text="{DynamicResource Perf_Services_Warning}" FontSize="11" Margin="0,0,0,10"
+                                       Foreground="{DynamicResource AccentBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="1" Content="{DynamicResource Common_Refresh}"
+                                Style="{StaticResource TopBarButtonStyle}" Width="Auto" Padding="10,0"
+                                Click="RefreshServices_Click" VerticalAlignment="Top" />
+                    </Grid>
+                    <ItemsControl x:Name="ServicesList" />
+                </StackPanel>
+            </Border>
+
+            <!-- Disk Cleanup -->
+            <Border Style="{StaticResource CardStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="{DynamicResource Perf_DiskCleanup_Title}" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource PrimaryTextBrush}" />
+                        <TextBlock Text="{DynamicResource Perf_DiskCleanup_Desc}" FontSize="12" Margin="0,2,0,0"
+                                   Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                    </StackPanel>
+                    <Button Grid.Column="1" Content="{DynamicResource Perf_DiskCleanup_Button}"
+                            Style="{StaticResource TopBarButtonStyle}" Width="Auto" Padding="14,0"
+                            VerticalAlignment="Center" Click="DiskCleanup_Click" />
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

@@ -26,4 +26,26 @@
     <sys:String x:Key="ThemeToggle_Tooltip">Toggle dark / light mode</sys:String>
     <sys:String x:Key="LanguageToggle_Tooltip">Change language</sys:String>
 
+    <!-- Performance page -->
+    <sys:String x:Key="Perf_PowerPlan_Title">Power Plan</sys:String>
+    <sys:String x:Key="Perf_PowerPlan_Desc">Choose how Windows balances performance and energy usage.</sys:String>
+
+    <sys:String x:Key="Perf_Startup_Title">Startup Programs</sys:String>
+    <sys:String x:Key="Perf_Startup_Desc">Enable or disable programs that launch automatically with Windows.</sys:String>
+
+    <sys:String x:Key="Perf_VisualEffects_Title">Visual Effects</sys:String>
+    <sys:String x:Key="Perf_VisualEffects_Desc">Reduce animations and transparency for maximum performance.</sys:String>
+    <sys:String x:Key="Perf_VisualEffects_Toggle">Best performance mode</sys:String>
+
+    <sys:String x:Key="Perf_Services_Title">Windows Services</sys:String>
+    <sys:String x:Key="Perf_Services_Desc">Disable non-essential background services. Only well-known, safe services are listed.</sys:String>
+    <sys:String x:Key="Perf_Services_Warning">Disabling services may affect related Windows features. You can re-enable them anytime.</sys:String>
+
+    <sys:String x:Key="Perf_DiskCleanup_Title">Disk Cleanup</sys:String>
+    <sys:String x:Key="Perf_DiskCleanup_Desc">Free up disk space by removing temporary and unnecessary files.</sys:String>
+    <sys:String x:Key="Perf_DiskCleanup_Button">Open Disk Cleanup</sys:String>
+
+    <sys:String x:Key="Common_Refresh">Refresh</sys:String>
+    <sys:String x:Key="Common_NotAvailable">Not available on this system</sys:String>
+
 </ResourceDictionary>
