@@ -1,5 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
+using System.Diagnostics;
+using System.Security.Principal;
 using System.Windows;
 using Velopack;
 
@@ -14,7 +16,47 @@ public partial class App : Application
     {
         // Must run as early as possible, before any other startup code, so Velopack can handle
         // install/update/uninstall "hooks" (e.g. creating shortcuts) correctly on first launch.
+        // The app manifest is intentionally "asInvoker" (not requireAdministrator) so that
+        // Velopack's setup/updater and "dotnet run" can launch the process without an OS-level
+        // elevation prompt getting in the way; instead we self-elevate via ShellExecute below.
         VelopackApp.Build().Run();
+
+        if (!IsRunningAsAdministrator())
+        {
+            RelaunchElevated();
+            Shutdown();
+            return;
+        }
+    }
+
+    private static bool IsRunningAsAdministrator()
+    {
+        using var identity = WindowsIdentity.GetCurrent();
+        var principal = new WindowsPrincipal(identity);
+        return principal.IsInRole(WindowsBuiltInRole.Administrator);
+    }
+
+    private static void RelaunchElevated()
+    {
+        var exePath = Process.GetCurrentProcess().MainModule?.FileName;
+        if (string.IsNullOrEmpty(exePath))
+        {
+            return;
+        }
+
+        try
+        {
+            var startInfo = new ProcessStartInfo(exePath)
+            {
+                UseShellExecute = true,
+                Verb = "runas",
+            };
+            Process.Start(startInfo);
+        }
+        catch (System.ComponentModel.Win32Exception)
+        {
+            // User cancelled the UAC prompt; just exit without elevation.
+        }
     }
 }
 

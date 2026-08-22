@@ -6,9 +6,12 @@
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
           Many features (power plans, services, startup entries) require administrative
-          rights on Windows. The app therefore requests elevation on launch.
+          rights on Windows. Rather than requestedExecutionLevel="requireAdministrator" (which
+          conflicts with Velopack's/dotnet run's own process-launching, causing "operation
+          requires elevation" errors), the app launches asInvoker and re-launches itself
+          elevated via ShellExecute("runas") in code (see App.xaml.cs EnsureElevated()).
         -->
-        <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
     </security>
   </trustInfo>

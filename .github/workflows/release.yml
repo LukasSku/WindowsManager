@@ -45,6 +45,7 @@ jobs:
           --packDir publish
           --mainExe WindowsManager.App.exe
           --icon src/WindowsManager.App/Assets/AppIcon.ico
+          --shortcuts Desktop
           -o releases
 
       - name: GitHub Release veröffentlichen
