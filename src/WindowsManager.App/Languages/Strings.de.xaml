@@ -87,6 +87,42 @@
     <sys:String x:Key="Perf_FastStartup_Toggle">Schnellstart aktivieren</sys:String>
     <sys:String x:Key="Perf_FastStartup_Help">Der Schnellstart versetzt den Windows-Kernel beim Herunterfahren in einen Ruhezustand, damit der nächste Start schneller geht. Das kann gelegentlich Probleme mit Treibern, Dual-Boot-Systemen oder Festplatten-Tools verursachen, die einen vollständigen Kaltstart benötigen - bei solchen Problemen deaktivieren.</sys:String>
 
+    <!-- Datenschutzseite -->
+    <sys:String x:Key="Privacy_Telemetry_Title">Telemetrie &amp; Diagnosedaten</sys:String>
+    <sys:String x:Key="Privacy_Telemetry_Desc">Begrenze die Diagnosedaten, die Windows an Microsoft sendet.</sys:String>
+    <sys:String x:Key="Privacy_Telemetry_Toggle">Nur erforderliche Diagnosedaten senden</sys:String>
+    <sys:String x:Key="Privacy_Telemetry_Help">Windows sendet normalerweise Nutzungs- und Diagnosedaten an Microsoft, um das Betriebssystem zu verbessern. "Erforderlich" begrenzt dies auf das Minimum, das für Sicherheit und Grundfunktionen nötig ist (Geräteinfos, Qualitäts-/Zuverlässigkeitsdaten). Manche diagnosebasierten Problemlösungs-Tools funktionieren dadurch eventuell etwas ungenauer.</sys:String>
+
+    <sys:String x:Key="Privacy_AdvertisingId_Title">Werbe-ID</sys:String>
+    <sys:String x:Key="Privacy_AdvertisingId_Desc">Steuere personalisierte Werbung über Apps hinweg.</sys:String>
+    <sys:String x:Key="Privacy_AdvertisingId_Toggle">Werbe-ID deaktivieren</sys:String>
+    <sys:String x:Key="Privacy_AdvertisingId_Help">Windows weist deinem Konto eine eindeutige Werbe-ID zu, mit der Apps personalisierte Werbung anzeigen und dein Verhalten appübergreifend nachverfolgen können. Das Deaktivieren stoppt dieses appübergreifende Tracking; in werbefinanzierten Apps siehst du weiterhin Werbung, aber weniger auf dich zugeschnitten.</sys:String>
+
+    <sys:String x:Key="Privacy_ActivityHistory_Title">Aktivitätsverlauf</sys:String>
+    <sys:String x:Key="Privacy_ActivityHistory_Desc">Steuere die Windows-Timeline / den Aktivitäts-Feed.</sys:String>
+    <sys:String x:Key="Privacy_ActivityHistory_Toggle">Aktivitätsverlauf deaktivieren</sys:String>
+    <sys:String x:Key="Privacy_ActivityHistory_Help">Windows kann deine App- und Dokumentaktivität (Aktivitätsverlauf/Timeline) lokal aufzeichnen und optional mit Microsoft synchronisieren, um Aufgaben auf anderen Geräten fortzusetzen. Das Deaktivieren stoppt sowohl die lokale Erfassung als auch den Cloud-Upload dieser Aktivitätsdaten.</sys:String>
+
+    <sys:String x:Key="Privacy_Location_Title">Standortdienste</sys:String>
+    <sys:String x:Key="Privacy_Location_Desc">Steuere den systemweiten Zugriff auf deinen Standort.</sys:String>
+    <sys:String x:Key="Privacy_Location_Toggle">Standortdienste deaktivieren</sys:String>
+    <sys:String x:Key="Privacy_Location_Help">Schaltet den Windows-Standortdienst komplett aus, sodass keine App (Karten, Wetter, Kamera-Geotagging usw.) auf den Standort deines Geräts zugreifen kann, unabhängig von einzelnen App-Berechtigungen. Nützlich, wenn du nie standortbasierte Funktionen nutzt.</sys:String>
+
+    <sys:String x:Key="Privacy_TipsFeedback_Title">Tipps- &amp; Feedback-Benachrichtigungen</sys:String>
+    <sys:String x:Key="Privacy_TipsFeedback_Desc">Reduziere Windows-Tipps, Vorschläge und Feedback-Anfragen.</sys:String>
+    <sys:String x:Key="Privacy_TipsFeedback_Toggle">Tipps- &amp; Feedback-Anfragen deaktivieren</sys:String>
+    <sys:String x:Key="Privacy_TipsFeedback_Help">Verhindert, dass Windows "Erste Schritte"-Tipps, vorgeschlagene Apps im Start-/Sperrbildschirm und regelmäßige Bewertungsanfragen über das Feedback-Hub anzeigt. Rein kosmetisch/benachrichtigungsbezogen - beeinträchtigt keine Kernfunktionen.</sys:String>
+
+    <sys:String x:Key="Privacy_CameraMic_Title">Kamera- &amp; Mikrofonzugriff</sys:String>
+    <sys:String x:Key="Privacy_CameraMic_Desc">Blockiere Kamera und Mikrofon für alle Apps auf einmal.</sys:String>
+    <sys:String x:Key="Privacy_CameraMic_Toggle">Kamera &amp; Mikrofon für alle Apps blockieren</sys:String>
+    <sys:String x:Key="Privacy_CameraMic_Help">Statt jede App-Berechtigung für Kamera/Mikrofon einzeln in den Einstellungen zu prüfen, schaltet dieser Schalter systemweit ab, dass alle Apps auf Kamera und Mikrofon zugreifen dürfen. Bei Bedarf für Videoanrufe, Spracheingabe usw. wieder ausschalten.</sys:String>
+
+    <sys:String x:Key="Privacy_Inking_Title">Handschrift- &amp; Eingabe-Personalisierung</sys:String>
+    <sys:String x:Key="Privacy_Inking_Desc">Verhindere, dass Windows deine Handschrift und Tippmuster lernt.</sys:String>
+    <sys:String x:Key="Privacy_Inking_Toggle">Handschrift- &amp; Eingabedatenerfassung deaktivieren</sys:String>
+    <sys:String x:Key="Privacy_Inking_Help">Windows kann Beispiele deiner Handschrift und Tastatureingaben sammeln (inklusive Kontakte und Kalenderdetails), um Autokorrektur und Vorschläge systemweit zu verbessern. Das Deaktivieren stoppt die Erfassung und löscht die dafür "trainierten" Personalisierungsdaten.</sys:String>
+
     <sys:String x:Key="Common_Refresh">Aktualisieren</sys:String>
     <sys:String x:Key="Common_NotAvailable">Auf diesem System nicht verfügbar</sys:String>
     <sys:String x:Key="Common_Loading">Wird geladen…</sys:String>

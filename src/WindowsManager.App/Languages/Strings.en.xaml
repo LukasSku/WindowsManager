@@ -87,6 +87,42 @@
     <sys:String x:Key="Perf_FastStartup_Toggle">Enable Fast Startup</sys:String>
     <sys:String x:Key="Perf_FastStartup_Help">Fast Startup hibernates the Windows kernel session on shutdown so the next boot is quicker. It can occasionally cause issues with drivers, dual-booting another OS, or disk tools that need a fully cold boot - disable it if you notice such problems.</sys:String>
 
+    <!-- Privacy page -->
+    <sys:String x:Key="Privacy_Telemetry_Title">Telemetry &amp; Diagnostic Data</sys:String>
+    <sys:String x:Key="Privacy_Telemetry_Desc">Limit the diagnostic data Windows sends to Microsoft.</sys:String>
+    <sys:String x:Key="Privacy_Telemetry_Toggle">Send only required diagnostic data</sys:String>
+    <sys:String x:Key="Privacy_Telemetry_Help">Windows normally sends usage and diagnostic data to Microsoft to help improve the OS. Setting this to "Required" limits it to the minimum data needed for security and basic functionality (device info, quality/reliability data), reducing what's shared. Some diagnostics-based troubleshooting tools may work less accurately.</sys:String>
+
+    <sys:String x:Key="Privacy_AdvertisingId_Title">Advertising ID</sys:String>
+    <sys:String x:Key="Privacy_AdvertisingId_Desc">Control personalized ads across apps.</sys:String>
+    <sys:String x:Key="Privacy_AdvertisingId_Toggle">Disable advertising ID</sys:String>
+    <sys:String x:Key="Privacy_AdvertisingId_Help">Windows assigns your account a unique advertising ID that apps can use to show personalized ads and remember your activity across apps. Disabling it stops this cross-app tracking; you'll still see ads in ad-supported apps, but less tailored to you.</sys:String>
+
+    <sys:String x:Key="Privacy_ActivityHistory_Title">Activity History</sys:String>
+    <sys:String x:Key="Privacy_ActivityHistory_Desc">Control the Windows Timeline / Activity feed.</sys:String>
+    <sys:String x:Key="Privacy_ActivityHistory_Toggle">Disable activity history</sys:String>
+    <sys:String x:Key="Privacy_ActivityHistory_Help">Windows can record your app and document activity (Activity History/Timeline) locally and optionally sync it to Microsoft to resume tasks on other devices. Disabling this stops both the local collection and cloud upload of this activity data.</sys:String>
+
+    <sys:String x:Key="Privacy_Location_Title">Location Services</sys:String>
+    <sys:String x:Key="Privacy_Location_Desc">Control system-wide access to your location.</sys:String>
+    <sys:String x:Key="Privacy_Location_Toggle">Disable location services</sys:String>
+    <sys:String x:Key="Privacy_Location_Help">Turns off the Windows location service entirely, so no app (Maps, Weather, Camera geotagging, etc.) can access your device's location, regardless of individual app permissions. Useful if you never use location-based features.</sys:String>
+
+    <sys:String x:Key="Privacy_TipsFeedback_Title">Tips &amp; Feedback Notifications</sys:String>
+    <sys:String x:Key="Privacy_TipsFeedback_Desc">Reduce Windows tips, suggestions and feedback prompts.</sys:String>
+    <sys:String x:Key="Privacy_TipsFeedback_Toggle">Disable tips &amp; feedback prompts</sys:String>
+    <sys:String x:Key="Privacy_TipsFeedback_Help">Stops Windows from showing "Getting started" tips, suggested apps in Start/lock screen, and periodic requests to rate your experience via the Feedback Hub. Purely cosmetic/notification-related - doesn't affect core functionality.</sys:String>
+
+    <sys:String x:Key="Privacy_CameraMic_Title">Camera &amp; Microphone Access</sys:String>
+    <sys:String x:Key="Privacy_CameraMic_Desc">Block all apps from using your camera and microphone at once.</sys:String>
+    <sys:String x:Key="Privacy_CameraMic_Toggle">Block camera &amp; microphone for all apps</sys:String>
+    <sys:String x:Key="Privacy_CameraMic_Help">Instead of reviewing every app's camera/microphone permission individually in Settings, this flips a single system-wide switch that denies all apps access to your camera and microphone. Turn it back off if you need to use video calls, voice input, etc.</sys:String>
+
+    <sys:String x:Key="Privacy_Inking_Title">Inking &amp; Typing Personalization</sys:String>
+    <sys:String x:Key="Privacy_Inking_Desc">Stop Windows from learning your handwriting and typing patterns.</sys:String>
+    <sys:String x:Key="Privacy_Inking_Toggle">Disable inking &amp; typing data collection</sys:String>
+    <sys:String x:Key="Privacy_Inking_Help">Windows can collect samples of your handwriting and typing (including contacts and calendar details) to improve autocorrect and suggestions across the system. Disabling this stops the collection and clears the "trained" personalization data used for these suggestions.</sys:String>
+
     <sys:String x:Key="Common_Refresh">Refresh</sys:String>
     <sys:String x:Key="Common_NotAvailable">Not available on this system</sys:String>
     <sys:String x:Key="Common_Loading">Loading…</sys:String>

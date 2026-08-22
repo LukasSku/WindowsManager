@@ -68,38 +68,28 @@
                 </Expander>
 
                 <!-- Visual Effects -->
-                <Expander Style="{StaticResource SectionExpanderStyle}">
-                    <Expander.Header>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource Perf_VisualEffects_Title}" FontSize="16" FontWeight="SemiBold"
-                                               Foreground="{DynamicResource PrimaryTextBrush}" />
-                                    <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_VisualEffects_Help}">
-                                        <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
-                                                   Foreground="{DynamicResource SecondaryTextBrush}" />
-                                    </Border>
-                                </StackPanel>
-                                <TextBlock Text="{DynamicResource Perf_VisualEffects_Desc}" FontSize="12" Margin="0,2,0,0"
-                                           Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
-                            </StackPanel>
-                        </Grid>
-                    </Expander.Header>
+                <Border Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{DynamicResource Perf_VisualEffects_Toggle}"
-                                   Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
-                        <CheckBox Grid.Column="1" x:Name="VisualEffectsToggle" Style="{StaticResource ToggleSwitchStyle}"
-                                  Click="VisualEffectsToggle_Click" />
+                        <StackPanel Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock Text="{DynamicResource Perf_VisualEffects_Title}" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <TextBlock Text="{DynamicResource Perf_VisualEffects_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_VisualEffects_Help}"
+                                VerticalAlignment="Top" Margin="0,2,0,0">
+                            <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" />
+                        </Border>
+                        <CheckBox Grid.Column="2" x:Name="VisualEffectsToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                  Click="VisualEffectsToggle_Click" Margin="8,0,0,0" VerticalAlignment="Center" />
                     </Grid>
-                </Expander>
+                </Border>
 
                 <!-- Windows Services -->
                 <Expander Style="{StaticResource SectionExpanderStyle}">
@@ -133,25 +123,30 @@
                 </Expander>
 
                 <!-- Quick Temp Cleanup -->
-                <Expander Style="{StaticResource SectionExpanderStyle}">
-                    <Expander.Header>
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
                                 <TextBlock Text="{DynamicResource Perf_TempCleanup_Title}" FontSize="16" FontWeight="SemiBold"
                                            Foreground="{DynamicResource PrimaryTextBrush}" />
-                                <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_TempCleanup_Help}">
-                                    <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
-                                               Foreground="{DynamicResource SecondaryTextBrush}" />
-                                </Border>
+                                <TextBlock Text="{DynamicResource Perf_TempCleanup_Desc}" FontSize="12" Margin="0,2,0,10"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
                             </StackPanel>
-                            <TextBlock Text="{DynamicResource Perf_TempCleanup_Desc}" FontSize="12" Margin="0,2,0,0"
-                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
-                        </StackPanel>
-                    </Expander.Header>
-                    <Button Content="{DynamicResource Perf_TempCleanup_Button}"
-                            Style="{StaticResource PrimaryButtonStyle}"
-                            Click="TempCleanup_Click" />
-                </Expander>
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_TempCleanup_Help}"
+                                    VerticalAlignment="Top" Margin="0,2,0,0">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                        </Grid>
+                        <Button Content="{DynamicResource Perf_TempCleanup_Button}"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Click="TempCleanup_Click" />
+                    </StackPanel>
+                </Border>
 
                 <!-- Network Optimization -->
                 <Expander Style="{StaticResource SectionExpanderStyle}">
@@ -323,31 +318,28 @@
                 </Expander>
 
                 <!-- Fast Startup -->
-                <Expander Style="{StaticResource SectionExpanderStyle}">
-                    <Expander.Header>
-                        <StackPanel>
-                            <TextBlock Text="{DynamicResource Perf_FastStartup_Title}" FontSize="16" FontWeight="SemiBold"
-                                       Foreground="{DynamicResource PrimaryTextBrush}" />
-                            <TextBlock Text="{DynamicResource Perf_FastStartup_Desc}" FontSize="12" Margin="0,2,0,0"
-                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
-                        </StackPanel>
-                    </Expander.Header>
+                <Border Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{DynamicResource Perf_FastStartup_Toggle}"
-                                   Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
-                        <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_FastStartup_Help}">
+                        <StackPanel Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock Text="{DynamicResource Perf_FastStartup_Title}" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <TextBlock Text="{DynamicResource Perf_FastStartup_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_FastStartup_Help}"
+                                VerticalAlignment="Top" Margin="0,2,0,0">
                             <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
                                        Foreground="{DynamicResource SecondaryTextBrush}" />
                         </Border>
                         <CheckBox Grid.Column="2" x:Name="FastStartupToggle" Style="{StaticResource ToggleSwitchStyle}"
-                                  Click="FastStartupToggle_Click" Margin="8,0,0,0" />
+                                  Click="FastStartupToggle_Click" Margin="8,0,0,0" VerticalAlignment="Center" />
                     </Grid>
-                </Expander>
+                </Border>
             </StackPanel>
         </ScrollViewer>
 
