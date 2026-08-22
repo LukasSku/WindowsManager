@@ -34,16 +34,6 @@ public partial class MainWindow : Window
         if (ContentArea != null) ContentArea.Content = new PrivacyPage();
     }
 
-    private void NavExtras_Checked(object sender, RoutedEventArgs e)
-    {
-        if (ContentArea != null) ContentArea.Content = new ExtrasPage();
-    }
-
-    private void NavInfo_Checked(object sender, RoutedEventArgs e)
-    {
-        if (ContentArea != null) ContentArea.Content = new InfoPage();
-    }
-
     private void ThemeToggleButton_Click(object sender, RoutedEventArgs e)
     {
         ThemeManager.ToggleTheme();

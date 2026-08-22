@@ -38,14 +38,6 @@
                                  Checked="NavPrivacy_Checked">
                         <TextBlock Text="{DynamicResource Nav_Privacy}" />
                     </RadioButton>
-                    <RadioButton x:Name="NavExtras" GroupName="Nav" Style="{StaticResource NavButtonStyle}"
-                                 Checked="NavExtras_Checked">
-                        <TextBlock Text="{DynamicResource Nav_Extras}" />
-                    </RadioButton>
-                    <RadioButton x:Name="NavInfo" GroupName="Nav" Style="{StaticResource NavButtonStyle}"
-                                 Checked="NavInfo_Checked">
-                        <TextBlock Text="{DynamicResource Nav_Info}" />
-                    </RadioButton>
                 </StackPanel>
 
                 <!-- Bottom controls: settings gear opens a popup with theme + language options -->
