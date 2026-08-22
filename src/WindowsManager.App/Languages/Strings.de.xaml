@@ -37,6 +37,13 @@
     <sys:String x:Key="Settings_Title">Einstellungen</sys:String>
     <sys:String x:Key="Settings_DarkMode">Dunkler Modus</sys:String>
     <sys:String x:Key="Settings_Language">Sprache</sys:String>
+    <sys:String x:Key="Settings_CheckForUpdates">Nach Updates suchen</sys:String>
+    <sys:String x:Key="Settings_CheckingForUpdates">Suche nach Updates…</sys:String>
+    <sys:String x:Key="Settings_NoUpdateAvailable">Du hast bereits die neueste Version.</sys:String>
+    <sys:String x:Key="Settings_UpdateAvailable">Version {0} ist verfügbar.</sys:String>
+    <sys:String x:Key="Settings_InstallUpdate">Update installieren &amp; neu starten</sys:String>
+    <sys:String x:Key="Settings_InstallingUpdate">Update wird heruntergeladen und installiert…</sys:String>
+    <sys:String x:Key="Settings_UpdateCheckError">Update-Prüfung fehlgeschlagen: {0}</sys:String>
 
     <!-- Leistungsseite -->
     <sys:String x:Key="Perf_PowerPlan_Title">Energieplan</sys:String>

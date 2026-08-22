@@ -37,6 +37,13 @@
     <sys:String x:Key="Settings_Title">Settings</sys:String>
     <sys:String x:Key="Settings_DarkMode">Dark mode</sys:String>
     <sys:String x:Key="Settings_Language">Language</sys:String>
+    <sys:String x:Key="Settings_CheckForUpdates">Check for updates</sys:String>
+    <sys:String x:Key="Settings_CheckingForUpdates">Checking for updates…</sys:String>
+    <sys:String x:Key="Settings_NoUpdateAvailable">You're on the latest version.</sys:String>
+    <sys:String x:Key="Settings_UpdateAvailable">Version {0} is available.</sys:String>
+    <sys:String x:Key="Settings_InstallUpdate">Install update &amp; restart</sys:String>
+    <sys:String x:Key="Settings_InstallingUpdate">Downloading and installing update…</sys:String>
+    <sys:String x:Key="Settings_UpdateCheckError">Update check failed: {0}</sys:String>
 
     <!-- Performance page -->
     <sys:String x:Key="Perf_PowerPlan_Title">Power Plan</sys:String>

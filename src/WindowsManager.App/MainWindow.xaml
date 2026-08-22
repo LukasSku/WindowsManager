@@ -95,6 +95,16 @@
                                         <TextBlock x:Name="LanguageLabel" Text="EN" FontWeight="SemiBold" />
                                     </Button>
                                 </Grid>
+
+                                <Border BorderBrush="{DynamicResource BorderBrush2}" BorderThickness="0,1,0,0"
+                                        Margin="0,10,0,10" />
+
+                                <Button x:Name="CheckUpdateButton" Style="{StaticResource SecondaryButtonStyle}"
+                                        Content="{DynamicResource Settings_CheckForUpdates}"
+                                        HorizontalAlignment="Stretch" FontSize="12" Padding="0,8"
+                                        Click="CheckUpdateButton_Click" />
+                                <TextBlock x:Name="UpdateStatusText" FontSize="11" Margin="0,6,0,0"
+                                           TextWrapping="Wrap" Visibility="Collapsed" />
                             </StackPanel>
                         </Border>
                     </Popup>

@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: .NET 10 SDK einrichten
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Versionsnummer aus Tag ableiten
+        id: version
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $version = $tag.TrimStart("v")
+          echo "version=$version" >> $env:GITHUB_OUTPUT
+
+      - name: App self-contained veröffentlichen
+        run: >
+          dotnet publish src/WindowsManager.App/WindowsManager.App.csproj
+          -c Release -r win-x64 --self-contained true
+          -p:Version=${{ steps.version.outputs.version }}
+          -o publish
+
+      - name: vpk CLI installieren
+        run: dotnet tool install -g vpk
+
+      - name: Velopack-Release paketieren
+        run: >
+          vpk pack
+          --packId WindowsManager
+          --packVersion ${{ steps.version.outputs.version }}
+          --packDir publish
+          --mainExe WindowsManager.App.exe
+          --icon src/WindowsManager.App/Assets/AppIcon.ico
+          -o releases
+
+      - name: GitHub Release veröffentlichen
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "WindowsManager ${{ steps.version.outputs.version }}"
+          files: releases/*
+          fail_on_unmatched_files: true
