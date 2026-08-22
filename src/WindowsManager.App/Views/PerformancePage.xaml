@@ -20,7 +20,7 @@
                            Foreground="{DynamicResource SecondaryTextBrush}" />
 
                 <!-- Power Plan -->
-                <Expander Style="{StaticResource SectionExpanderStyle}" IsExpanded="True">
+                <Expander x:Name="PowerPlanSection" Style="{StaticResource SectionExpanderStyle}" IsExpanded="True">
                     <Expander.Header>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -39,7 +39,7 @@
                 </Expander>
 
                 <!-- Startup Programs -->
-                <Expander Style="{StaticResource SectionExpanderStyle}">
+                <Expander x:Name="StartupSection" Style="{StaticResource SectionExpanderStyle}">
                     <Expander.Header>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -68,7 +68,7 @@
                 </Expander>
 
                 <!-- Visual Effects -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="VisualEffectsSection" Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -92,7 +92,7 @@
                 </Border>
 
                 <!-- Windows Services -->
-                <Expander Style="{StaticResource SectionExpanderStyle}">
+                <Expander x:Name="ServicesSection" Style="{StaticResource SectionExpanderStyle}">
                     <Expander.Header>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -123,7 +123,7 @@
                 </Expander>
 
                 <!-- Quick Temp Cleanup -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="TempCleanupSection" Style="{StaticResource CardStyle}">
                     <StackPanel>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -149,7 +149,7 @@
                 </Border>
 
                 <!-- Network Optimization -->
-                <Expander Style="{StaticResource SectionExpanderStyle}">
+                <Expander x:Name="NetworkSection" Style="{StaticResource SectionExpanderStyle}">
                     <Expander.Header>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -234,7 +234,7 @@
                 </Expander>
 
                 <!-- Game Mode & GPU -->
-                <Expander Style="{StaticResource SectionExpanderStyle}">
+                <Expander x:Name="GamingSection" Style="{StaticResource SectionExpanderStyle}">
                     <Expander.Header>
                         <StackPanel>
                             <TextBlock Text="{DynamicResource Perf_Gaming_Title}" FontSize="16" FontWeight="SemiBold"
@@ -280,7 +280,7 @@
                 </Expander>
 
                 <!-- Explorer Performance -->
-                <Expander Style="{StaticResource SectionExpanderStyle}">
+                <Expander x:Name="ExplorerSection" Style="{StaticResource SectionExpanderStyle}">
                     <Expander.Header>
                         <StackPanel>
                             <TextBlock Text="{DynamicResource Perf_Explorer_Title}" FontSize="16" FontWeight="SemiBold"
@@ -318,7 +318,7 @@
                 </Expander>
 
                 <!-- Fast Startup -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="FastStartupSection" Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />

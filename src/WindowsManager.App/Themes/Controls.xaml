@@ -194,6 +194,36 @@
         </Setter>
     </Style>
 
+    <!-- Search box used in the sidebar to find tweaks by title/description -->
+    <Style x:Key="SearchBoxStyle" TargetType="TextBox">
+        <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush2}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="30,0,10,0" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="CaretBrush" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="16"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="Center" VerticalScrollBarVisibility="Disabled" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Collapsible section used to keep the Performance/Privacy pages clear and uncluttered -->
     <Style x:Key="SectionExpanderStyle" TargetType="Expander">
         <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}" />

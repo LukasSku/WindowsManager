@@ -20,7 +20,7 @@
                            Foreground="{DynamicResource SecondaryTextBrush}" />
 
                 <!-- Install new software via winget -->
-                <Expander Style="{StaticResource SectionExpanderStyle}" IsExpanded="True">
+                <Expander x:Name="InstallSection" Style="{StaticResource SectionExpanderStyle}" IsExpanded="True">
                     <Expander.Header>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -63,7 +63,7 @@
                 </Expander>
 
                 <!-- Installed applications / uninstall -->
-                <Expander Style="{StaticResource SectionExpanderStyle}" IsExpanded="True">
+                <Expander x:Name="InstalledSection" Style="{StaticResource SectionExpanderStyle}" IsExpanded="True">
                     <Expander.Header>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">

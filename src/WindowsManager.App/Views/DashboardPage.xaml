@@ -70,7 +70,7 @@
                 </Border>
 
                 <!-- System Restore -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="RestorePointSection" Style="{StaticResource CardStyle}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{DynamicResource Dashboard_RestorePoint_Title}" FontSize="15" FontWeight="SemiBold"
@@ -96,7 +96,7 @@
                 </Border>
 
                 <!-- Tweaks Backup -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="SettingsBackupSection" Style="{StaticResource CardStyle}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{DynamicResource Dashboard_SettingsBackup_Title}" FontSize="15" FontWeight="SemiBold"

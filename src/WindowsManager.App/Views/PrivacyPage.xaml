@@ -20,7 +20,7 @@
                            Foreground="{DynamicResource SecondaryTextBrush}" />
 
                 <!-- Telemetry -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="TelemetrySection" Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -44,7 +44,7 @@
                 </Border>
 
                 <!-- Advertising ID -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="AdvertisingIdSection" Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -68,7 +68,7 @@
                 </Border>
 
                 <!-- Activity History -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="ActivityHistorySection" Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -92,7 +92,7 @@
                 </Border>
 
                 <!-- Location Services -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="LocationSection" Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -116,7 +116,7 @@
                 </Border>
 
                 <!-- Tips & Feedback -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="TipsFeedbackSection" Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -140,7 +140,7 @@
                 </Border>
 
                 <!-- Camera & Microphone -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="CameraMicSection" Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -164,7 +164,7 @@
                 </Border>
 
                 <!-- Inking & Typing Personalization -->
-                <Border Style="{StaticResource CardStyle}">
+                <Border x:Name="InkingSection" Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />

@@ -7,6 +7,8 @@
     <sys:String x:Key="Nav_Privacy">Privacy</sys:String>
     <sys:String x:Key="Nav_AppManager">App Manager</sys:String>
 
+    <sys:String x:Key="Search_Placeholder">Search tweaks...</sys:String>
+
     <sys:String x:Key="AppTitle">Windows Manager</sys:String>
 
     <sys:String x:Key="Dashboard_Title">Dashboard</sys:String>
