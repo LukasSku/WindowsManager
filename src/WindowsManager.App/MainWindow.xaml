@@ -5,8 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsManager.App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{DynamicResource AppTitle}"
+        Height="640" Width="960"
+        MinHeight="480" MinWidth="720"
+        Background="{DynamicResource WindowBackgroundBrush}"
+        FontFamily="Segoe UI Variable, Segoe UI">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
+        <!-- Sidebar -->
+        <Border Grid.Column="0" Background="{DynamicResource SidebarBackgroundBrush}">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top"
+                           Text="{DynamicResource AppTitle}"
+                           FontSize="18" FontWeight="Bold"
+                           Foreground="{DynamicResource PrimaryTextBrush}"
+                           Margin="18,20,18,16" />
+
+                <StackPanel DockPanel.Dock="Top" Margin="0,4,0,0">
+                    <RadioButton x:Name="NavPerformance" GroupName="Nav" Style="{StaticResource NavButtonStyle}"
+                                 IsChecked="True" Checked="NavPerformance_Checked">
+                        <TextBlock Text="{DynamicResource Nav_Performance}" />
+                    </RadioButton>
+                    <RadioButton x:Name="NavPrivacy" GroupName="Nav" Style="{StaticResource NavButtonStyle}"
+                                 Checked="NavPrivacy_Checked">
+                        <TextBlock Text="{DynamicResource Nav_Privacy}" />
+                    </RadioButton>
+                    <RadioButton x:Name="NavExtras" GroupName="Nav" Style="{StaticResource NavButtonStyle}"
+                                 Checked="NavExtras_Checked">
+                        <TextBlock Text="{DynamicResource Nav_Extras}" />
+                    </RadioButton>
+                    <RadioButton x:Name="NavInfo" GroupName="Nav" Style="{StaticResource NavButtonStyle}"
+                                 Checked="NavInfo_Checked">
+                        <TextBlock Text="{DynamicResource Nav_Info}" />
+                    </RadioButton>
+                </StackPanel>
+
+                <!-- Bottom controls: theme + language switch -->
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                            HorizontalAlignment="Left" Margin="18,0,18,18">
+                    <Button x:Name="ThemeToggleButton" Style="{StaticResource TopBarButtonStyle}"
+                            ToolTip="{DynamicResource ThemeToggle_Tooltip}"
+                            Click="ThemeToggleButton_Click" Margin="0,0,8,0">
+                        <TextBlock x:Name="ThemeIcon" Text="&#xE708;" FontFamily="Segoe MDL2 Assets" />
+                    </Button>
+                    <Button x:Name="LanguageToggleButton" Style="{StaticResource TopBarButtonStyle}"
+                            ToolTip="{DynamicResource LanguageToggle_Tooltip}"
+                            Click="LanguageToggleButton_Click">
+                        <TextBlock x:Name="LanguageLabel" Text="EN" FontWeight="SemiBold" />
+                    </Button>
+                </StackPanel>
+
+                <Grid />
+            </DockPanel>
+        </Border>
+
+        <!-- Content area -->
+        <ContentControl x:Name="ContentArea" Grid.Column="1" />
     </Grid>
 </Window>

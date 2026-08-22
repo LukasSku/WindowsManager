@@ -1,13 +1,6 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using WindowsManager.App.Services;
+using WindowsManager.App.Views;
 
 namespace WindowsManager.App;
 
@@ -19,5 +12,53 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        UpdateThemeIcon();
+        UpdateLanguageLabel();
+
+        ContentArea.Content = new PerformancePage();
+    }
+
+    private void NavPerformance_Checked(object sender, RoutedEventArgs e)
+    {
+        if (ContentArea != null) ContentArea.Content = new PerformancePage();
+    }
+
+    private void NavPrivacy_Checked(object sender, RoutedEventArgs e)
+    {
+        if (ContentArea != null) ContentArea.Content = new PrivacyPage();
+    }
+
+    private void NavExtras_Checked(object sender, RoutedEventArgs e)
+    {
+        if (ContentArea != null) ContentArea.Content = new ExtrasPage();
+    }
+
+    private void NavInfo_Checked(object sender, RoutedEventArgs e)
+    {
+        if (ContentArea != null) ContentArea.Content = new InfoPage();
+    }
+
+    private void ThemeToggleButton_Click(object sender, RoutedEventArgs e)
+    {
+        ThemeManager.ToggleTheme();
+        UpdateThemeIcon();
+    }
+
+    private void LanguageToggleButton_Click(object sender, RoutedEventArgs e)
+    {
+        LocalizationManager.ToggleLanguage();
+        UpdateLanguageLabel();
+    }
+
+    private void UpdateThemeIcon()
+    {
+        // Sun glyph when dark mode is active (click to switch to light), moon glyph otherwise.
+        ThemeIcon.Text = ThemeManager.CurrentTheme == AppTheme.Dark ? "\uE706" : "\uE708";
+    }
+
+    private void UpdateLanguageLabel()
+    {
+        LanguageLabel.Text = LocalizationManager.CurrentLanguage == AppLanguage.German ? "DE" : "EN";
     }
 }

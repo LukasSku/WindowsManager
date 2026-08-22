@@ -1,0 +1,29 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="Nav_Performance">Leistung</sys:String>
+    <sys:String x:Key="Nav_Privacy">Datenschutz</sys:String>
+    <sys:String x:Key="Nav_Extras">Extras</sys:String>
+    <sys:String x:Key="Nav_Info">Info</sys:String>
+
+    <sys:String x:Key="AppTitle">Windows Manager</sys:String>
+
+    <sys:String x:Key="Performance_Title">Leistung</sys:String>
+    <sys:String x:Key="Performance_Subtitle">Optimiere dein System für maximale Geschwindigkeit.</sys:String>
+
+    <sys:String x:Key="Privacy_Title">Datenschutz</sys:String>
+    <sys:String x:Key="Privacy_Subtitle">Kontrolliere, was Windows über dich weitergibt.</sys:String>
+
+    <sys:String x:Key="Extras_Title">Extras</sys:String>
+    <sys:String x:Key="Extras_Subtitle">Weitere praktische Tweaks für Windows 11.</sys:String>
+
+    <sys:String x:Key="Info_Title">Info</sys:String>
+    <sys:String x:Key="Info_Subtitle">Über diese Anwendung.</sys:String>
+
+    <sys:String x:Key="ComingSoon">Funktionen für diesen Bereich folgen in Kürze.</sys:String>
+
+    <sys:String x:Key="ThemeToggle_Tooltip">Dunklen / hellen Modus umschalten</sys:String>
+    <sys:String x:Key="LanguageToggle_Tooltip">Sprache ändern</sys:String>
+
+</ResourceDictionary>

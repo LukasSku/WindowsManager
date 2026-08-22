@@ -1,0 +1,29 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="Nav_Performance">Performance</sys:String>
+    <sys:String x:Key="Nav_Privacy">Privacy</sys:String>
+    <sys:String x:Key="Nav_Extras">Extras</sys:String>
+    <sys:String x:Key="Nav_Info">Info</sys:String>
+
+    <sys:String x:Key="AppTitle">Windows Manager</sys:String>
+
+    <sys:String x:Key="Performance_Title">Performance</sys:String>
+    <sys:String x:Key="Performance_Subtitle">Optimize your system for maximum speed.</sys:String>
+
+    <sys:String x:Key="Privacy_Title">Privacy</sys:String>
+    <sys:String x:Key="Privacy_Subtitle">Control what Windows shares about you.</sys:String>
+
+    <sys:String x:Key="Extras_Title">Extras</sys:String>
+    <sys:String x:Key="Extras_Subtitle">Additional handy tweaks for Windows 11.</sys:String>
+
+    <sys:String x:Key="Info_Title">Info</sys:String>
+    <sys:String x:Key="Info_Subtitle">About this application.</sys:String>
+
+    <sys:String x:Key="ComingSoon">Features for this section are coming soon.</sys:String>
+
+    <sys:String x:Key="ThemeToggle_Tooltip">Toggle dark / light mode</sys:String>
+    <sys:String x:Key="LanguageToggle_Tooltip">Change language</sys:String>
+
+</ResourceDictionary>
