@@ -6,24 +6,28 @@
         xmlns:local="clr-namespace:WindowsManager.App"
         mc:Ignorable="d"
         Title="{DynamicResource AppTitle}"
+        Icon="pack://application:,,,/Assets/AppIcon.ico"
         Height="640" Width="960"
         MinHeight="480" MinWidth="720"
         Background="{DynamicResource WindowBackgroundBrush}"
         FontFamily="Segoe UI Variable, Segoe UI">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="240" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <!-- Sidebar -->
         <Border Grid.Column="0" Background="{DynamicResource SidebarBackgroundBrush}">
             <DockPanel>
-                <TextBlock DockPanel.Dock="Top"
-                           Text="{DynamicResource AppTitle}"
-                           FontSize="18" FontWeight="Bold"
-                           Foreground="{DynamicResource PrimaryTextBrush}"
-                           Margin="18,20,18,16" />
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="18,20,10,16">
+                    <Image Source="pack://application:,,,/Assets/AppLogo.png"
+                           Width="24" Height="24" Margin="0,0,8,0" />
+                    <TextBlock Text="{DynamicResource AppTitle}"
+                               FontSize="16" FontWeight="Bold"
+                               Foreground="{DynamicResource PrimaryTextBrush}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
 
                 <StackPanel DockPanel.Dock="Top" Margin="0,4,0,0">
                     <RadioButton x:Name="NavDashboard" GroupName="Nav" Style="{StaticResource NavButtonStyle}"
