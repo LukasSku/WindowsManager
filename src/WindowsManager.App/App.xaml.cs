@@ -14,6 +14,11 @@ public partial class App : Application
 {
     public App()
     {
+        // Needed so Encoding.GetEncoding(<legacy OEM codepage>) works (e.g. for decoding
+        // powercfg.exe's console output correctly on non-English Windows installs) -
+        // .NET no longer ships legacy code pages out of the box.
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
         // Must run as early as possible, before any other startup code, so Velopack can handle
         // install/update/uninstall "hooks" (e.g. creating shortcuts) correctly on first launch.
         // The app manifest is intentionally "asInvoker" (not requireAdministrator) so that

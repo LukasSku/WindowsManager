@@ -1,4 +1,7 @@
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace WindowsManager.App.Services
 {
@@ -7,8 +10,19 @@ namespace WindowsManager.App.Services
     /// <summary>
     /// Wraps the built-in "powercfg" command line tool to list and switch Windows power plans.
     /// </summary>
-    public static class PowerPlanService
+    public static partial class PowerPlanService
     {
+        [DllImport("kernel32.dll")]
+        private static extern int GetOEMCP();
+
+        // powercfg's line labels (e.g. "Power Scheme GUID:") are localized based on the
+        // Windows display language, so matching against the English text fails on non-English
+        // systems (e.g. German shows "Energieschema-GUID:") and silently returns zero plans.
+        // GUIDs themselves are locale-independent, so every plan/active-scheme line is found
+        // by locating the GUID pattern instead of relying on the (localized) label text.
+        [GeneratedRegex(@"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")]
+        private static partial Regex GuidRegex();
+
         public static List<PowerPlan> GetPlans()
         {
             var output = RunPowerCfg("/list");
@@ -18,22 +32,26 @@ namespace WindowsManager.App.Services
             foreach (var line in output.Split('\n'))
             {
                 var trimmed = line.Trim();
-                if (!trimmed.StartsWith("Power Scheme GUID:", StringComparison.OrdinalIgnoreCase))
+                var guidMatch = GuidRegex().Match(trimmed);
+                if (!guidMatch.Success)
                 {
                     continue;
                 }
 
-                // Format: Power Scheme GUID: <guid>  (<name>) [* if active]
-                var afterPrefix = trimmed["Power Scheme GUID:".Length..].Trim();
-                var guid = afterPrefix.Split(' ')[0].Trim();
+                var guid = guidMatch.Value;
 
-                var nameStart = afterPrefix.IndexOf('(');
-                var nameEnd = afterPrefix.IndexOf(')');
+                // Format (any language): <localized label>: <guid>  (<name>) [* if active]
+                var afterGuid = trimmed[(guidMatch.Index + guidMatch.Length)..];
+                var nameStart = afterGuid.IndexOf('(');
+                var nameEnd = afterGuid.IndexOf(')');
                 var name = nameStart >= 0 && nameEnd > nameStart
-                    ? afterPrefix.Substring(nameStart + 1, nameEnd - nameStart - 1)
+                    ? afterGuid.Substring(nameStart + 1, nameEnd - nameStart - 1)
                     : guid;
 
-                plans.Add(new PowerPlan(guid, name, string.Equals(guid, activeGuid, StringComparison.OrdinalIgnoreCase)));
+                var isActive = afterGuid.TrimEnd().EndsWith('*') ||
+                    string.Equals(guid, activeGuid, StringComparison.OrdinalIgnoreCase);
+
+                plans.Add(new PowerPlan(guid, name, isActive));
             }
 
             return plans;
@@ -42,16 +60,8 @@ namespace WindowsManager.App.Services
         public static string? GetActiveGuid()
         {
             var output = RunPowerCfg("/getactivescheme");
-            var trimmed = output.Trim();
-            const string marker = "Power Scheme GUID:";
-            var idx = trimmed.IndexOf(marker, StringComparison.OrdinalIgnoreCase);
-            if (idx < 0)
-            {
-                return null;
-            }
-
-            var after = trimmed[(idx + marker.Length)..].Trim();
-            return after.Split(' ')[0].Trim();
+            var match = GuidRegex().Match(output);
+            return match.Success ? match.Value : null;
         }
 
         public static void SetActive(string guid)
@@ -66,6 +76,7 @@ namespace WindowsManager.App.Services
                 RedirectStandardOutput = true,
                 UseShellExecute = false,
                 CreateNoWindow = true,
+                StandardOutputEncoding = GetOemEncoding(),
             };
 
             using var process = Process.Start(psi);
@@ -77,6 +88,21 @@ namespace WindowsManager.App.Services
             var output = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
             return output;
+        }
+
+        private static Encoding GetOemEncoding()
+        {
+            try
+            {
+                return Encoding.GetEncoding(GetOEMCP());
+            }
+            catch (NotSupportedException)
+            {
+                // Falls back to the process default if the OEM codepage can't be resolved
+                // (e.g. CodePagesEncodingProvider wasn't registered) - GUID parsing still
+                // works since it doesn't depend on correctly decoded non-ASCII characters.
+                return Encoding.Default;
+            }
         }
     }
 }
