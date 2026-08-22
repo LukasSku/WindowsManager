@@ -16,6 +16,15 @@
     <sys:String x:Key="Dashboard_Disk_Title">Speicherplatz</sys:String>
     <sys:String x:Key="Dashboard_System_Title">System</sys:String>
 
+    <sys:String x:Key="Dashboard_RestorePoint_Title">Systemwiederherstellungspunkt</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_Desc">Erstelle ein Sicherheitsnetz vor Tweaks, oder öffne Windows' eigenes Wiederherstellungs-Tool.</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_Help">Erstellt einen Windows-Systemwiederherstellungspunkt - einen Schnappschuss der Systemdateien, installierten Programme und Registry-Einstellungen, mit dem du deinen PC zurücksetzen kannst, falls ein Tweak Probleme verursacht. Windows erlaubt standardmäßig nur einen Wiederherstellungspunkt pro 24 Stunden. Die eigentliche Wiederherstellung läuft immer über Windows' offizielles Tool (rstrui.exe), niemals automatisch über diese App.</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_CreateButton">Jetzt Wiederherstellungspunkt erstellen</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_OpenButton">Systemwiederherstellung öffnen</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_Description">WindowsManager-Checkpoint</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_Success">Wiederherstellungspunkt erfolgreich erstellt (oder es existiert bereits einer aus den letzten 24 Stunden).</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_Error">Wiederherstellungspunkt konnte nicht erstellt werden. {0}</sys:String>
+
     <sys:String x:Key="Performance_Title">Leistung</sys:String>
     <sys:String x:Key="Performance_Subtitle">Optimiere dein System für maximale Geschwindigkeit.</sys:String>
 

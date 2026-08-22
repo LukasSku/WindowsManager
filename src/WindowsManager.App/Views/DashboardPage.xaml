@@ -68,6 +68,32 @@
                         <TextBlock x:Name="MachineNameText" Foreground="{DynamicResource SecondaryTextBrush}" FontSize="13" Margin="0,2,0,0" />
                     </StackPanel>
                 </Border>
+
+                <!-- System Restore -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{DynamicResource Dashboard_RestorePoint_Title}" FontSize="15" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Dashboard_RestorePoint_Help}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                        </StackPanel>
+                        <TextBlock Text="{DynamicResource Dashboard_RestorePoint_Desc}" FontSize="12" Margin="0,2,0,10"
+                                   Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource PrimaryButtonStyle}"
+                                    Content="{DynamicResource Dashboard_RestorePoint_CreateButton}"
+                                    Click="CreateRestorePoint_Click" />
+                            <Button Style="{StaticResource SecondaryButtonStyle}"
+                                    Content="{DynamicResource Dashboard_RestorePoint_OpenButton}"
+                                    Margin="8,0,0,0" Click="OpenSystemRestore_Click" />
+                        </StackPanel>
+                        <TextBlock x:Name="RestorePointStatusText" FontSize="12" Margin="0,10,0,0"
+                                   TextWrapping="Wrap" Visibility="Collapsed" />
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </ScrollViewer>
     </Grid>

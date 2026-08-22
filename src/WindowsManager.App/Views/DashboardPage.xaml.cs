@@ -25,6 +25,38 @@ namespace WindowsManager.App.Views
             Unloaded += (_, _) => _refreshTimer.Stop();
         }
 
+        private async void CreateRestorePoint_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            button.IsEnabled = false;
+
+            var description = (string)FindResource("Dashboard_RestorePoint_Description");
+            var (success, message) = await Task.Run(() => RestorePointService.Create(description));
+
+            button.IsEnabled = true;
+            RestorePointStatusText.Text = success
+                ? (string)FindResource("Dashboard_RestorePoint_Success")
+                : string.Format((string)FindResource("Dashboard_RestorePoint_Error"), message);
+            RestorePointStatusText.Foreground = success
+                ? new SolidColorBrush(Color.FromRgb(0x4C, 0xAF, 0x50))
+                : new SolidColorBrush(Color.FromRgb(0xE5, 0x53, 0x53));
+            RestorePointStatusText.Visibility = Visibility.Visible;
+        }
+
+        private void OpenSystemRestore_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                RestorePointService.OpenSystemRestoreUi();
+            }
+            catch
+            {
+                RestorePointStatusText.Text = string.Format((string)FindResource("Dashboard_RestorePoint_Error"), string.Empty);
+                RestorePointStatusText.Foreground = new SolidColorBrush(Color.FromRgb(0xE5, 0x53, 0x53));
+                RestorePointStatusText.Visibility = Visibility.Visible;
+            }
+        }
+
         private void LoadStaticInfo()
         {
             var snapshot = SystemInfoService.GetSnapshot();

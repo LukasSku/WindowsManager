@@ -16,6 +16,15 @@
     <sys:String x:Key="Dashboard_Disk_Title">Storage</sys:String>
     <sys:String x:Key="Dashboard_System_Title">System</sys:String>
 
+    <sys:String x:Key="Dashboard_RestorePoint_Title">System Restore Point</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_Desc">Create a safety net before applying tweaks, or open Windows' own restore tool.</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_Help">Creates a Windows System Restore point - a snapshot of system files, installed programs and registry settings that lets you roll your PC back if a tweak causes problems. Windows only allows creating one restore point per 24 hours by default. Restoring itself always happens through Windows' own official tool (rstrui.exe), never automatically from this app.</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_CreateButton">Create restore point now</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_OpenButton">Open System Restore</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_Description">WindowsManager checkpoint</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_Success">Restore point created successfully (or one already existed within the last 24 hours).</sys:String>
+    <sys:String x:Key="Dashboard_RestorePoint_Error">Could not create a restore point. {0}</sys:String>
+
     <sys:String x:Key="Performance_Title">Performance</sys:String>
     <sys:String x:Key="Performance_Subtitle">Optimize your system for maximum speed.</sys:String>
 
