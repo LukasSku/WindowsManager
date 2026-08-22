@@ -16,7 +16,12 @@ public partial class MainWindow : Window
         UpdateThemeIcon();
         UpdateLanguageLabel();
 
-        ContentArea.Content = new PerformancePage();
+        ContentArea.Content = new DashboardPage();
+    }
+
+    private void NavDashboard_Checked(object sender, RoutedEventArgs e)
+    {
+        if (ContentArea != null) ContentArea.Content = new DashboardPage();
     }
 
     private void NavPerformance_Checked(object sender, RoutedEventArgs e)
@@ -43,6 +48,11 @@ public partial class MainWindow : Window
     {
         ThemeManager.ToggleTheme();
         UpdateThemeIcon();
+    }
+
+    private void SettingsButton_Click(object sender, RoutedEventArgs e)
+    {
+        SettingsPopup.IsOpen = !SettingsPopup.IsOpen;
     }
 
     private void LanguageToggleButton_Click(object sender, RoutedEventArgs e)

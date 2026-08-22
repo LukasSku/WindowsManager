@@ -2,12 +2,20 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
+    <sys:String x:Key="Nav_Dashboard">Übersicht</sys:String>
     <sys:String x:Key="Nav_Performance">Leistung</sys:String>
     <sys:String x:Key="Nav_Privacy">Datenschutz</sys:String>
     <sys:String x:Key="Nav_Extras">Extras</sys:String>
     <sys:String x:Key="Nav_Info">Info</sys:String>
 
     <sys:String x:Key="AppTitle">Windows Manager</sys:String>
+
+    <sys:String x:Key="Dashboard_Title">Übersicht</sys:String>
+    <sys:String x:Key="Dashboard_Subtitle">Ein schneller Überblick über dein System.</sys:String>
+    <sys:String x:Key="Dashboard_Cpu_Title">CPU-Auslastung</sys:String>
+    <sys:String x:Key="Dashboard_Ram_Title">Arbeitsspeicher (RAM)</sys:String>
+    <sys:String x:Key="Dashboard_Disk_Title">Speicherplatz</sys:String>
+    <sys:String x:Key="Dashboard_System_Title">System</sys:String>
 
     <sys:String x:Key="Performance_Title">Leistung</sys:String>
     <sys:String x:Key="Performance_Subtitle">Optimiere dein System für maximale Geschwindigkeit.</sys:String>
@@ -25,6 +33,10 @@
 
     <sys:String x:Key="ThemeToggle_Tooltip">Dunklen / hellen Modus umschalten</sys:String>
     <sys:String x:Key="LanguageToggle_Tooltip">Sprache ändern</sys:String>
+    <sys:String x:Key="Settings_Tooltip">Einstellungen</sys:String>
+    <sys:String x:Key="Settings_Title">Einstellungen</sys:String>
+    <sys:String x:Key="Settings_DarkMode">Dunkler Modus</sys:String>
+    <sys:String x:Key="Settings_Language">Sprache</sys:String>
 
     <!-- Leistungsseite -->
     <sys:String x:Key="Perf_PowerPlan_Title">Energieplan</sys:String>

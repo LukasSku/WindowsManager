@@ -26,8 +26,12 @@
                            Margin="18,20,18,16" />
 
                 <StackPanel DockPanel.Dock="Top" Margin="0,4,0,0">
+                    <RadioButton x:Name="NavDashboard" GroupName="Nav" Style="{StaticResource NavButtonStyle}"
+                                 IsChecked="True" Checked="NavDashboard_Checked">
+                        <TextBlock Text="{DynamicResource Nav_Dashboard}" />
+                    </RadioButton>
                     <RadioButton x:Name="NavPerformance" GroupName="Nav" Style="{StaticResource NavButtonStyle}"
-                                 IsChecked="True" Checked="NavPerformance_Checked">
+                                 Checked="NavPerformance_Checked">
                         <TextBlock Text="{DynamicResource Nav_Performance}" />
                     </RadioButton>
                     <RadioButton x:Name="NavPrivacy" GroupName="Nav" Style="{StaticResource NavButtonStyle}"
@@ -44,19 +48,56 @@
                     </RadioButton>
                 </StackPanel>
 
-                <!-- Bottom controls: theme + language switch -->
-                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
-                            HorizontalAlignment="Left" Margin="18,0,18,18">
-                    <Button x:Name="ThemeToggleButton" Style="{StaticResource TopBarButtonStyle}"
-                            ToolTip="{DynamicResource ThemeToggle_Tooltip}"
-                            Click="ThemeToggleButton_Click" Margin="0,0,8,0">
-                        <TextBlock x:Name="ThemeIcon" Text="&#xE708;" FontFamily="Segoe MDL2 Assets" />
+                <!-- Bottom controls: settings gear opens a popup with theme + language options -->
+                <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left" Margin="18,0,18,18">
+                    <Button x:Name="SettingsButton" Style="{StaticResource TopBarButtonStyle}"
+                            ToolTip="{DynamicResource Settings_Tooltip}"
+                            Click="SettingsButton_Click">
+                        <TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" />
                     </Button>
-                    <Button x:Name="LanguageToggleButton" Style="{StaticResource TopBarButtonStyle}"
-                            ToolTip="{DynamicResource LanguageToggle_Tooltip}"
-                            Click="LanguageToggleButton_Click">
-                        <TextBlock x:Name="LanguageLabel" Text="EN" FontWeight="SemiBold" />
-                    </Button>
+
+                    <Popup x:Name="SettingsPopup" PlacementTarget="{Binding ElementName=SettingsButton}"
+                           Placement="Top" StaysOpen="False" AllowsTransparency="True">
+                        <Border Background="{DynamicResource CardBackgroundBrush}"
+                                BorderBrush="{DynamicResource BorderBrush2}" BorderThickness="1"
+                                CornerRadius="8" Padding="14" Margin="0,0,0,8">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" Opacity="0.25" BlurRadius="14" ShadowDepth="2" />
+                            </Border.Effect>
+                            <StackPanel Width="200">
+                                <TextBlock Text="{DynamicResource Settings_Title}" FontSize="13" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource PrimaryTextBrush}" Margin="0,0,0,10" />
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{DynamicResource Settings_DarkMode}"
+                                               Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
+                                    <Button Grid.Column="1" x:Name="ThemeToggleButton" Style="{StaticResource TopBarButtonStyle}"
+                                            ToolTip="{DynamicResource ThemeToggle_Tooltip}"
+                                            Click="ThemeToggleButton_Click">
+                                        <TextBlock x:Name="ThemeIcon" Text="&#xE708;" FontFamily="Segoe MDL2 Assets" />
+                                    </Button>
+                                </Grid>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{DynamicResource Settings_Language}"
+                                               Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
+                                    <Button Grid.Column="1" x:Name="LanguageToggleButton" Style="{StaticResource TopBarButtonStyle}"
+                                            ToolTip="{DynamicResource LanguageToggle_Tooltip}"
+                                            Click="LanguageToggleButton_Click">
+                                        <TextBlock x:Name="LanguageLabel" Text="EN" FontWeight="SemiBold" />
+                                    </Button>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </Popup>
                 </StackPanel>
 
                 <Grid />
