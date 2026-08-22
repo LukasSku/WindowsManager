@@ -25,6 +25,18 @@
     <sys:String x:Key="Dashboard_RestorePoint_Success">Restore point created successfully (or one already existed within the last 24 hours).</sys:String>
     <sys:String x:Key="Dashboard_RestorePoint_Error">Could not create a restore point. {0}</sys:String>
 
+    <sys:String x:Key="Dashboard_SettingsBackup_Title">Backup &amp; Restore Tweaks</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_Desc">Save all Performance and Privacy tweaks you've configured, or restore them later or on another PC.</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_Help">Saves the current state of every tweak on the Performance and Privacy pages (power plan, visual effects, network settings, game mode, disabled services, startup programs, and all privacy toggles) into a single JSON file you choose. Restoring re-applies all of them at once - services or startup programs that no longer exist on this PC are skipped automatically instead of causing an error.</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_ExportButton">Export tweaks…</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_ImportButton">Restore tweaks…</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_ExportSuccess">Tweaks exported successfully.</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_ImportSuccess">{0} tweaks restored successfully.</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_Error">Something went wrong: {0}</sys:String>
+
+    <sys:String x:Key="Confirm_ImportTweaks_Title">Restore all tweaks?</sys:String>
+    <sys:String x:Key="Confirm_ImportTweaks_Message">This will overwrite your current Performance and Privacy settings (power plan, services, network settings, privacy toggles, startup programs, etc.) with the values from the selected backup file. Continue?</sys:String>
+
     <sys:String x:Key="Performance_Title">Performance</sys:String>
     <sys:String x:Key="Performance_Subtitle">Optimize your system for maximum speed.</sys:String>
 

@@ -57,6 +57,75 @@ namespace WindowsManager.App.Views
             }
         }
 
+        private void ExportSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.SaveFileDialog
+            {
+                FileName = "WindowsManager-Backup.json",
+                Filter = "JSON (*.json)|*.json",
+                DefaultExt = ".json",
+            };
+
+            if (dialog.ShowDialog() != true)
+            {
+                return;
+            }
+
+            try
+            {
+                TweaksBackupService.Export(dialog.FileName);
+                ShowSettingsBackupStatus((string)FindResource("Dashboard_SettingsBackup_ExportSuccess"), success: true);
+            }
+            catch (Exception ex)
+            {
+                ShowSettingsBackupStatus(string.Format((string)FindResource("Dashboard_SettingsBackup_Error"), ex.Message), success: false);
+            }
+        }
+
+        private void ImportSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Filter = "JSON (*.json)|*.json",
+                DefaultExt = ".json",
+            };
+
+            if (dialog.ShowDialog() != true)
+            {
+                return;
+            }
+
+            var confirm = MessageBox.Show(
+                (string)FindResource("Confirm_ImportTweaks_Message"),
+                (string)FindResource("Confirm_ImportTweaks_Title"),
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (confirm != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                var appliedCount = TweaksBackupService.Import(dialog.FileName);
+                ShowSettingsBackupStatus(string.Format((string)FindResource("Dashboard_SettingsBackup_ImportSuccess"), appliedCount), success: true);
+            }
+            catch (Exception ex)
+            {
+                ShowSettingsBackupStatus(string.Format((string)FindResource("Dashboard_SettingsBackup_Error"), ex.Message), success: false);
+            }
+        }
+
+        private void ShowSettingsBackupStatus(string message, bool success)
+        {
+            SettingsBackupStatusText.Text = message;
+            SettingsBackupStatusText.Foreground = success
+                ? new SolidColorBrush(Color.FromRgb(0x4C, 0xAF, 0x50))
+                : new SolidColorBrush(Color.FromRgb(0xE5, 0x53, 0x53));
+            SettingsBackupStatusText.Visibility = Visibility.Visible;
+        }
+
         private void LoadStaticInfo()
         {
             var snapshot = SystemInfoService.GetSnapshot();

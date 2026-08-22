@@ -14,12 +14,12 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
+        AppSettingsService.LoadAndApply();
         UpdateThemeIcon();
         UpdateLanguageLabel();
 
         ContentArea.Content = new DashboardPage();
     }
-
     private void NavDashboard_Checked(object sender, RoutedEventArgs e)
     {
         if (ContentArea != null) ContentArea.Content = new DashboardPage();
@@ -44,6 +44,7 @@ public partial class MainWindow : Window
     {
         ThemeManager.ToggleTheme();
         UpdateThemeIcon();
+        AppSettingsService.SaveCurrent();
     }
 
     private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -55,6 +56,7 @@ public partial class MainWindow : Window
     {
         LocalizationManager.ToggleLanguage();
         UpdateLanguageLabel();
+        AppSettingsService.SaveCurrent();
     }
 
     private void UpdateThemeIcon()

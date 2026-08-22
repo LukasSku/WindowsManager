@@ -25,6 +25,18 @@
     <sys:String x:Key="Dashboard_RestorePoint_Success">Wiederherstellungspunkt erfolgreich erstellt (oder es existiert bereits einer aus den letzten 24 Stunden).</sys:String>
     <sys:String x:Key="Dashboard_RestorePoint_Error">Wiederherstellungspunkt konnte nicht erstellt werden. {0}</sys:String>
 
+    <sys:String x:Key="Dashboard_SettingsBackup_Title">Tweaks sichern &amp; wiederherstellen</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_Desc">Alle konfigurierten Performance- und Privacy-Einstellungen sichern oder später/auf einem anderen PC wiederherstellen.</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_Help">Speichert den aktuellen Zustand jedes Tweaks auf den Performance- und Privacy-Seiten (Energieplan, visuelle Effekte, Netzwerkeinstellungen, Game Mode, deaktivierte Dienste, Autostart-Programme und alle Privacy-Schalter) in einer einzigen JSON-Datei deiner Wahl. Beim Wiederherstellen werden alle auf einmal erneut angewendet - Dienste oder Autostart-Programme, die auf diesem PC nicht mehr existieren, werden automatisch übersprungen statt einen Fehler zu verursachen.</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_ExportButton">Tweaks exportieren…</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_ImportButton">Tweaks wiederherstellen…</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_ExportSuccess">Tweaks erfolgreich exportiert.</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_ImportSuccess">{0} Tweaks erfolgreich wiederhergestellt.</sys:String>
+    <sys:String x:Key="Dashboard_SettingsBackup_Error">Etwas ist schiefgelaufen: {0}</sys:String>
+
+    <sys:String x:Key="Confirm_ImportTweaks_Title">Alle Tweaks wiederherstellen?</sys:String>
+    <sys:String x:Key="Confirm_ImportTweaks_Message">Dies überschreibt deine aktuellen Performance- und Privacy-Einstellungen (Energieplan, Dienste, Netzwerkeinstellungen, Privacy-Schalter, Autostart-Programme usw.) mit den Werten aus der gewählten Backup-Datei. Fortfahren?</sys:String>
+
     <sys:String x:Key="Performance_Title">Leistung</sys:String>
     <sys:String x:Key="Performance_Subtitle">Optimiere dein System für maximale Geschwindigkeit.</sys:String>
 
