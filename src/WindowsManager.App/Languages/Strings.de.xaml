@@ -29,41 +29,63 @@
     <!-- Leistungsseite -->
     <sys:String x:Key="Perf_PowerPlan_Title">Energieplan</sys:String>
     <sys:String x:Key="Perf_PowerPlan_Desc">Lege fest, wie Windows Leistung und Energieverbrauch abwägt.</sys:String>
+    <sys:String x:Key="Perf_PowerPlan_Help">Energiepläne steuern Prozessortakt, Bildschirm-Timeout und Ruhezustand. "Höchstleistung"/"Ultimative Leistung" halten die CPU auf höherer Taktrate, was mehr Strom/Wärme kostet - bei Desktop-PCs meist unproblematisch, bei Laptops verkürzt es die Akkulaufzeit.</sys:String>
 
     <sys:String x:Key="Perf_Startup_Title">Autostart-Programme</sys:String>
     <sys:String x:Key="Perf_Startup_Desc">Aktiviere oder deaktiviere Programme, die automatisch mit Windows starten.</sys:String>
+    <sys:String x:Key="Perf_Startup_Help">Jede aktivierte App hier startet automatisch beim Anmelden und belegt RAM/CPU, bevor du überhaupt etwas geöffnet hast. Das Deaktivieren selten benötigter Apps kann den Systemstart spürbar beschleunigen. Es wird nichts deinstalliert - du kannst jede App jederzeit wieder aktivieren.</sys:String>
 
     <sys:String x:Key="Perf_VisualEffects_Title">Visuelle Effekte</sys:String>
     <sys:String x:Key="Perf_VisualEffects_Desc">Reduziere Animationen und Transparenz für maximale Leistung.</sys:String>
     <sys:String x:Key="Perf_VisualEffects_Toggle">Modus für beste Leistung</sys:String>
+    <sys:String x:Key="Perf_VisualEffects_Help">Schaltet Fensteranimationen, Transparenz (Acryl/Mica) und andere optische Effekte aus. Das entlastet GPU/CPU, was besonders auf älterer oder schwächerer Hardware spürbar ist. Windows wirkt dadurch "flacher" und weniger animiert.</sys:String>
 
     <sys:String x:Key="Perf_Services_Title">Windows-Dienste</sys:String>
     <sys:String x:Key="Perf_Services_Desc">Deaktiviere nicht benötigte Hintergrunddienste. Es werden nur bekannte, sichere Dienste angezeigt.</sys:String>
     <sys:String x:Key="Perf_Services_Warning">Das Deaktivieren von Diensten kann zugehörige Windows-Funktionen beeinträchtigen. Du kannst sie jederzeit wieder aktivieren.</sys:String>
+    <sys:String x:Key="Perf_Services_Help">Hintergrunddienste (z. B. Telemetrie, Suchindizierung, Druckerdienste) belegen RAM/CPU, auch wenn du ihre Funktion gerade nicht nutzt. Hier wird nur eine kuratierte Liste von Diensten angezeigt, die üblicherweise gefahrlos deaktiviert werden können, um Kernfunktionen von Windows nicht zu gefährden.</sys:String>
 
     <sys:String x:Key="Perf_Network_Title">Netzwerk-Optimierung</sys:String>
     <sys:String x:Key="Perf_Network_Desc">Reduziere die Latenz und aktualisiere die DNS-Einstellungen.</sys:String>
     <sys:String x:Key="Perf_Network_NagleToggle">Nagle-Algorithmus deaktivieren (geringere Latenz)</sys:String>
+    <sys:String x:Key="Perf_Network_NagleHelp">Der Nagle-Algorithmus bündelt kleine Netzwerkpakete, um Bandbreite effizienter zu nutzen, verursacht dabei aber eine kleine Verzögerung. Das Deaktivieren sendet Pakete sofort - das senkt die Latenz (z. B. für Gaming/Remote-Desktop), nutzt Bandbreite aber etwas weniger effizient.</sys:String>
     <sys:String x:Key="Perf_Network_FlushDnsButton">DNS-Cache leeren</sys:String>
+    <sys:String x:Key="Perf_Network_FlushDnsHelp">Löscht den zwischengespeicherten DNS-Cache von Windows. Nützlich nach dem Ändern von DNS-Servern oder wenn eine Website veraltete/falsche Inhalte anzeigt, da ein alter Cache-Eintrag sonst weiterhin auf die alte Adresse verweisen kann.</sys:String>
+    <sys:String x:Key="Perf_Network_ThrottlingToggle">Netzwerk-Drosselung für Hintergrundverkehr deaktivieren</sys:String>
+    <sys:String x:Key="Perf_Network_ThrottlingHelp">Windows begrenzt normalerweise Netzwerkverkehr, der nicht mit Multimedia zusammenhängt (NetworkThrottlingIndex), damit Audio-/Video-Streams flüssig bleiben. Das Deaktivieren dieser Begrenzung kann Ruckler in Spielen oder Streaming-Apps auf Systemen mit guter Netzwerk-Hardware reduzieren, kann in seltenen Fällen aber Multimedia-Wiedergabe auf schwächeren Verbindungen weniger flüssig machen.</sys:String>
+    <sys:String x:Key="Perf_Network_AutoTuningToggle">TCP Auto-Tuning aktivieren (empfohlen)</sys:String>
+    <sys:String x:Key="Perf_Network_AutoTuningHelp">TCP Auto-Tuning lässt Windows das Netzwerk-Empfangsfenster automatisch für optimalen Durchsatz anpassen. "Normal" (aktiviert) liefert meist die schnellsten Downloads. Manche älteren Router/VPNs kommen damit nicht gut klar und funktionieren besser mit eingeschränktem Auto-Tuning - nur bei konkreten Verbindungsproblemen deaktivieren.</sys:String>
+    <sys:String x:Key="Perf_Network_AdapterPowerToggle">Energiesparen für Netzwerkadapter deaktivieren</sys:String>
+    <sys:String x:Key="Perf_Network_AdapterPowerHelp">Windows kann Netzwerkadapter zum Energiesparen abschalten. Auf mancher Hardware verursacht das kurze Verbindungsabbrüche oder zusätzliche Latenz beim Aufwachen des Adapters. Das Deaktivieren hält den Adapter dauerhaft voll aktiv, auf Kosten eines etwas höheren Stromverbrauchs (relevant vor allem bei Laptops im Akkubetrieb).</sys:String>
 
     <sys:String x:Key="Perf_Gaming_Title">Game Mode &amp; GPU</sys:String>
     <sys:String x:Key="Perf_Gaming_Desc">Optimiere Windows für Gaming-Leistung.</sys:String>
     <sys:String x:Key="Perf_Gaming_GameModeToggle">Windows-Spielmodus</sys:String>
+    <sys:String x:Key="Perf_Gaming_GameModeHelp">Der Spielmodus priorisiert CPU-/GPU-Ressourcen für das aktive Spiel und reduziert Hintergrundunterbrechungen wie Treiberinstallationen oder Windows-Update-Benachrichtigungen während des Spielens.</sys:String>
     <sys:String x:Key="Perf_Gaming_GpuSchedulingToggle">Hardwarebeschleunigte GPU-Planung</sys:String>
+    <sys:String x:Key="Perf_Gaming_GpuSchedulingHelp">Lässt die GPU ihre Speicherwarteschlange direkt selbst verwalten statt über die CPU, was Latenz reduzieren und das Frame-Pacing in Spielen auf unterstützten GPUs/Treibern verbessern kann. Erfordert einen Neustart und einen einigermaßen aktuellen GPU-Treiber.</sys:String>
     <sys:String x:Key="Perf_Gaming_RestartNote">Für die GPU-Planung ist eventuell ein Neustart erforderlich, damit die Änderung wirksam wird.</sys:String>
 
     <sys:String x:Key="Perf_Explorer_Title">Explorer-Leistung</sys:String>
     <sys:String x:Key="Perf_Explorer_Desc">Beschleunige den Datei-Explorer.</sys:String>
     <sys:String x:Key="Perf_Explorer_ThumbnailsToggle">Miniaturansichten deaktivieren (nur Symbole)</sys:String>
+    <sys:String x:Key="Perf_Explorer_ThumbnailsHelp">Der Explorer erzeugt normalerweise Bild-/Video-Miniaturansichten für Dateien, was zusätzliche CPU-/Festplattenlast in Ordnern mit vielen Dateien verursacht. Stattdessen generische Symbole anzuzeigen beschleunigt das Durchsuchen, besonders in Ordnern mit vielen Fotos oder Videos.</sys:String>
     <sys:String x:Key="Perf_Explorer_RestartButton">Explorer neu starten</sys:String>
+    <sys:String x:Key="Perf_Explorer_RestartHelp">Startet den explorer.exe-Prozess neu (Taskleiste und Dateifenster verschwinden kurz und erscheinen wieder), damit Änderungen wie die Miniaturansicht-Einstellung sofort wirken, ohne dich abmelden zu müssen.</sys:String>
 
     <sys:String x:Key="Perf_TempCleanup_Title">Schnelle Temp-Dateien-Bereinigung</sys:String>
     <sys:String x:Key="Perf_TempCleanup_Desc">Lösche temporäre Dateien sofort, ohne einen separaten Dialog zu öffnen.</sys:String>
     <sys:String x:Key="Perf_TempCleanup_Button">Temporäre Dateien löschen</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Help">Löscht übrig gebliebene temporäre Dateien von Windows und installierten Apps (aus %TEMP% und C:\Windows\Temp). Das gibt Speicherplatz frei und kann gelegentlich Probleme durch beschädigte Temp-Dateien beheben. Dateien, die gerade von einer laufenden App genutzt werden, werden sicher übersprungen.</sys:String>
     <sys:String x:Key="Confirm_TempCleanup_Title">Temporäre Dateien löschen?</sys:String>
     <sys:String x:Key="Confirm_TempCleanup_Message">Dadurch werden temporäre Dateien aus %TEMP% und C:\Windows\Temp dauerhaft gelöscht. Dateien, die gerade in Benutzung sind, werden automatisch übersprungen. Fortfahren?</sys:String>
     <sys:String x:Key="TempCleanup_Result_Title">Bereinigung abgeschlossen</sys:String>
     <sys:String x:Key="TempCleanup_Result_Message">{0} MB freigegeben durch Löschen von {1} Dateien ({2} Dateien übersprungen, da in Benutzung).</sys:String>
+
+    <sys:String x:Key="Perf_FastStartup_Title">Schnellstart</sys:String>
+    <sys:String x:Key="Perf_FastStartup_Desc">Beschleunige den Systemstart durch hybrides Herunterfahren.</sys:String>
+    <sys:String x:Key="Perf_FastStartup_Toggle">Schnellstart aktivieren</sys:String>
+    <sys:String x:Key="Perf_FastStartup_Help">Der Schnellstart versetzt den Windows-Kernel beim Herunterfahren in einen Ruhezustand, damit der nächste Start schneller geht. Das kann gelegentlich Probleme mit Treibern, Dual-Boot-Systemen oder Festplatten-Tools verursachen, die einen vollständigen Kaltstart benötigen - bei solchen Problemen deaktivieren.</sys:String>
 
     <sys:String x:Key="Common_Refresh">Aktualisieren</sys:String>
     <sys:String x:Key="Common_NotAvailable">Auf diesem System nicht verfügbar</sys:String>

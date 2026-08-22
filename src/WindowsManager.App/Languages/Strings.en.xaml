@@ -29,41 +29,63 @@
     <!-- Performance page -->
     <sys:String x:Key="Perf_PowerPlan_Title">Power Plan</sys:String>
     <sys:String x:Key="Perf_PowerPlan_Desc">Choose how Windows balances performance and energy usage.</sys:String>
+    <sys:String x:Key="Perf_PowerPlan_Help">Windows power plans control CPU speed, screen timeout and sleep behavior. "High performance" / "Ultimate performance" keep the CPU running faster at the cost of more power draw and heat, which is usually fine for desktops but drains laptop batteries faster.</sys:String>
 
     <sys:String x:Key="Perf_Startup_Title">Startup Programs</sys:String>
     <sys:String x:Key="Perf_Startup_Desc">Enable or disable programs that launch automatically with Windows.</sys:String>
+    <sys:String x:Key="Perf_Startup_Help">Every enabled app here launches automatically when you log in, using RAM and CPU before you even open anything. Disabling apps you rarely use right after login can noticeably speed up boot time. This does not uninstall anything - you can re-enable an app anytime.</sys:String>
 
     <sys:String x:Key="Perf_VisualEffects_Title">Visual Effects</sys:String>
     <sys:String x:Key="Perf_VisualEffects_Desc">Reduce animations and transparency for maximum performance.</sys:String>
     <sys:String x:Key="Perf_VisualEffects_Toggle">Best performance mode</sys:String>
+    <sys:String x:Key="Perf_VisualEffects_Help">Turns off window animations, transparency (Acrylic/Mica) and other visual flourishes. This reduces GPU/CPU load, which helps most on older or lower-end hardware. Windows will look "flatter" and less animated.</sys:String>
 
     <sys:String x:Key="Perf_Services_Title">Windows Services</sys:String>
     <sys:String x:Key="Perf_Services_Desc">Disable non-essential background services. Only well-known, safe services are listed.</sys:String>
     <sys:String x:Key="Perf_Services_Warning">Disabling services may affect related Windows features. You can re-enable them anytime.</sys:String>
+    <sys:String x:Key="Perf_Services_Help">Background services (e.g. telemetry collection, search indexing, printing) consume RAM and CPU even when you're not using their features. Only a curated list of commonly safe-to-disable services is shown here to avoid breaking core Windows functionality.</sys:String>
 
     <sys:String x:Key="Perf_Network_Title">Network Optimization</sys:String>
     <sys:String x:Key="Perf_Network_Desc">Reduce latency and refresh DNS settings.</sys:String>
     <sys:String x:Key="Perf_Network_NagleToggle">Disable Nagle's algorithm (lower latency)</sys:String>
+    <sys:String x:Key="Perf_Network_NagleHelp">Nagle's algorithm bundles small network packets together to use bandwidth more efficiently, but this adds a small delay. Disabling it sends packets immediately, which reduces latency - useful for gaming and remote desktop, at the cost of slightly less efficient bandwidth usage.</sys:String>
     <sys:String x:Key="Perf_Network_FlushDnsButton">Flush DNS cache</sys:String>
+    <sys:String x:Key="Perf_Network_FlushDnsHelp">Clears Windows' cached DNS lookups. Useful after changing DNS servers or when a website shows outdated/incorrect content, since a stale cached entry can otherwise still point to the old address.</sys:String>
+    <sys:String x:Key="Perf_Network_ThrottlingToggle">Disable network throttling for background traffic</sys:String>
+    <sys:String x:Key="Perf_Network_ThrottlingHelp">Windows normally limits non-multimedia network traffic (NetworkThrottlingIndex) to keep audio/video streams smooth. Disabling this limit can reduce stutter in games or streaming apps on systems with good network hardware, but in rare cases can make multimedia playback less smooth on weaker connections.</sys:String>
+    <sys:String x:Key="Perf_Network_AutoTuningToggle">Enable TCP Auto-Tuning (recommended)</sys:String>
+    <sys:String x:Key="Perf_Network_AutoTuningHelp">TCP Auto-Tuning lets Windows automatically size the network receive window for best throughput. Keeping it "Normal" (enabled) usually gives the fastest downloads. Some older routers/VPNs mishandle this and work better with it restricted - only disable this if you have connection issues with a specific router or VPN.</sys:String>
+    <sys:String x:Key="Perf_Network_AdapterPowerToggle">Disable network adapter power saving</sys:String>
+    <sys:String x:Key="Perf_Network_AdapterPowerHelp">Windows can power down network adapters to save energy. On some hardware this causes brief disconnects or added latency when the adapter wakes back up. Disabling power saving keeps the adapter always fully powered, at the cost of slightly higher energy use (mainly relevant for laptops on battery).</sys:String>
 
     <sys:String x:Key="Perf_Gaming_Title">Game Mode &amp; GPU</sys:String>
     <sys:String x:Key="Perf_Gaming_Desc">Optimize Windows for gaming performance.</sys:String>
     <sys:String x:Key="Perf_Gaming_GameModeToggle">Windows Game Mode</sys:String>
+    <sys:String x:Key="Perf_Gaming_GameModeHelp">Game Mode prioritizes CPU/GPU resources for the active game and reduces background interruptions such as driver installs and Windows Update notifications while playing.</sys:String>
     <sys:String x:Key="Perf_Gaming_GpuSchedulingToggle">Hardware-accelerated GPU scheduling</sys:String>
+    <sys:String x:Key="Perf_Gaming_GpuSchedulingHelp">Lets the GPU manage its own memory queue directly instead of relying on the CPU, which can reduce latency and improve frame pacing in games on supported GPUs/drivers. Requires a restart to take effect and requires a fairly modern GPU driver.</sys:String>
     <sys:String x:Key="Perf_Gaming_RestartNote">A restart may be required for GPU scheduling changes to take effect.</sys:String>
 
     <sys:String x:Key="Perf_Explorer_Title">Explorer Performance</sys:String>
     <sys:String x:Key="Perf_Explorer_Desc">Speed up File Explorer.</sys:String>
     <sys:String x:Key="Perf_Explorer_ThumbnailsToggle">Disable thumbnail previews (icons only)</sys:String>
+    <sys:String x:Key="Perf_Explorer_ThumbnailsHelp">Explorer normally generates image/video thumbnail previews for files, which takes extra CPU/disk work in folders with many files. Showing generic icons instead speeds up browsing, especially on folders with lots of photos or videos.</sys:String>
     <sys:String x:Key="Perf_Explorer_RestartButton">Restart Explorer</sys:String>
+    <sys:String x:Key="Perf_Explorer_RestartHelp">Restarts the explorer.exe process (taskbar and file windows will briefly disappear and reappear) so that changes like the thumbnail setting apply immediately without needing to log out.</sys:String>
 
     <sys:String x:Key="Perf_TempCleanup_Title">Quick Temp File Cleanup</sys:String>
     <sys:String x:Key="Perf_TempCleanup_Desc">Instantly delete temporary files without opening a separate dialog.</sys:String>
     <sys:String x:Key="Perf_TempCleanup_Button">Clean temporary files</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Help">Deletes leftover temporary files created by Windows and installed apps (from %TEMP% and C:\Windows\Temp). This frees up disk space and can occasionally fix issues caused by corrupted temp files. Files currently in use by a running app are safely skipped.</sys:String>
     <sys:String x:Key="Confirm_TempCleanup_Title">Delete temporary files?</sys:String>
     <sys:String x:Key="Confirm_TempCleanup_Message">This will permanently delete temporary files from %TEMP% and C:\Windows\Temp. Files currently in use are skipped automatically. Continue?</sys:String>
     <sys:String x:Key="TempCleanup_Result_Title">Cleanup complete</sys:String>
     <sys:String x:Key="TempCleanup_Result_Message">Freed {0} MB by deleting {1} files ({2} files skipped because they were in use).</sys:String>
+
+    <sys:String x:Key="Perf_FastStartup_Title">Fast Startup</sys:String>
+    <sys:String x:Key="Perf_FastStartup_Desc">Speed up boot time using hybrid shutdown.</sys:String>
+    <sys:String x:Key="Perf_FastStartup_Toggle">Enable Fast Startup</sys:String>
+    <sys:String x:Key="Perf_FastStartup_Help">Fast Startup hibernates the Windows kernel session on shutdown so the next boot is quicker. It can occasionally cause issues with drivers, dual-booting another OS, or disk tools that need a fully cold boot - disable it if you notice such problems.</sys:String>
 
     <sys:String x:Key="Common_Refresh">Refresh</sys:String>
     <sys:String x:Key="Common_NotAvailable">Not available on this system</sys:String>

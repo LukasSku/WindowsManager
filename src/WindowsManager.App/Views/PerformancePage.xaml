@@ -23,8 +23,14 @@
                 <Expander Style="{StaticResource SectionExpanderStyle}" IsExpanded="True">
                     <Expander.Header>
                         <StackPanel>
-                            <TextBlock Text="{DynamicResource Perf_PowerPlan_Title}" FontSize="16" FontWeight="SemiBold"
-                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{DynamicResource Perf_PowerPlan_Title}" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_PowerPlan_Help}">
+                                    <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </Border>
+                            </StackPanel>
                             <TextBlock Text="{DynamicResource Perf_PowerPlan_Desc}" FontSize="12" Margin="0,2,0,0"
                                        Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
                         </StackPanel>
@@ -36,8 +42,14 @@
                 <Expander Style="{StaticResource SectionExpanderStyle}">
                     <Expander.Header>
                         <StackPanel>
-                            <TextBlock Text="{DynamicResource Perf_Startup_Title}" FontSize="16" FontWeight="SemiBold"
-                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{DynamicResource Perf_Startup_Title}" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Startup_Help}">
+                                    <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </Border>
+                            </StackPanel>
                             <TextBlock Text="{DynamicResource Perf_Startup_Desc}" FontSize="12" Margin="0,2,0,0"
                                        Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
                         </StackPanel>
@@ -64,8 +76,14 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
-                                <TextBlock Text="{DynamicResource Perf_VisualEffects_Title}" FontSize="16" FontWeight="SemiBold"
-                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Perf_VisualEffects_Title}" FontSize="16" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource PrimaryTextBrush}" />
+                                    <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_VisualEffects_Help}">
+                                        <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                                   Foreground="{DynamicResource SecondaryTextBrush}" />
+                                    </Border>
+                                </StackPanel>
                                 <TextBlock Text="{DynamicResource Perf_VisualEffects_Desc}" FontSize="12" Margin="0,2,0,0"
                                            Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
                             </StackPanel>
@@ -87,8 +105,14 @@
                 <Expander Style="{StaticResource SectionExpanderStyle}">
                     <Expander.Header>
                         <StackPanel>
-                            <TextBlock Text="{DynamicResource Perf_Services_Title}" FontSize="16" FontWeight="SemiBold"
-                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{DynamicResource Perf_Services_Title}" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Services_Help}">
+                                    <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </Border>
+                            </StackPanel>
                             <TextBlock Text="{DynamicResource Perf_Services_Desc}" FontSize="12" Margin="0,2,0,4"
                                        Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
                             <TextBlock Text="{DynamicResource Perf_Services_Warning}" FontSize="11"
@@ -108,12 +132,18 @@
                     </StackPanel>
                 </Expander>
 
-                <!-- Disk Cleanup -->
+                <!-- Quick Temp Cleanup -->
                 <Expander Style="{StaticResource SectionExpanderStyle}">
                     <Expander.Header>
                         <StackPanel>
-                            <TextBlock Text="{DynamicResource Perf_TempCleanup_Title}" FontSize="16" FontWeight="SemiBold"
-                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{DynamicResource Perf_TempCleanup_Title}" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_TempCleanup_Help}">
+                                    <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </Border>
+                            </StackPanel>
                             <TextBlock Text="{DynamicResource Perf_TempCleanup_Desc}" FontSize="12" Margin="0,2,0,0"
                                        Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
                         </StackPanel>
@@ -127,8 +157,10 @@
                 <Expander Style="{StaticResource SectionExpanderStyle}">
                     <Expander.Header>
                         <StackPanel>
-                            <TextBlock Text="{DynamicResource Perf_Network_Title}" FontSize="16" FontWeight="SemiBold"
-                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{DynamicResource Perf_Network_Title}" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                            </StackPanel>
                             <TextBlock Text="{DynamicResource Perf_Network_Desc}" FontSize="12" Margin="0,2,0,0"
                                        Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
                         </StackPanel>
@@ -138,15 +170,71 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Network_NagleToggle}"
                                        Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
-                            <CheckBox Grid.Column="1" x:Name="NagleToggle" Style="{StaticResource ToggleSwitchStyle}"
-                                      Click="NagleToggle_Click" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Network_NagleHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="NagleToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="NagleToggle_Click" Margin="8,0,0,0" />
                         </Grid>
-                        <Button Content="{DynamicResource Perf_Network_FlushDnsButton}"
-                                Style="{StaticResource SecondaryButtonStyle}"
-                                Click="FlushDns_Click" />
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Network_ThrottlingToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Network_ThrottlingHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="NetworkThrottlingToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="NetworkThrottlingToggle_Click" Margin="8,0,0,0" />
+                        </Grid>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Network_AutoTuningToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Network_AutoTuningHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="AutoTuningToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="AutoTuningToggle_Click" Margin="8,0,0,0" />
+                        </Grid>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Network_AdapterPowerToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Network_AdapterPowerHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="AdapterPowerToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="AdapterPowerToggle_Click" Margin="8,0,0,0" />
+                        </Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{DynamicResource Perf_Network_FlushDnsButton}"
+                                    Style="{StaticResource SecondaryButtonStyle}"
+                                    Click="FlushDns_Click" />
+                            <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Network_FlushDnsHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                        </StackPanel>
                     </StackPanel>
                 </Expander>
 
@@ -165,21 +253,31 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Gaming_GameModeToggle}"
                                        Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
-                            <CheckBox Grid.Column="1" x:Name="GameModeToggle" Style="{StaticResource ToggleSwitchStyle}"
-                                      Click="GameModeToggle_Click" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Gaming_GameModeHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="GameModeToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="GameModeToggle_Click" Margin="8,0,0,0" />
                         </Grid>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Gaming_GpuSchedulingToggle}"
                                        Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
-                            <CheckBox Grid.Column="1" x:Name="GpuSchedulingToggle" Style="{StaticResource ToggleSwitchStyle}"
-                                      Click="GpuSchedulingToggle_Click" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Gaming_GpuSchedulingHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="GpuSchedulingToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="GpuSchedulingToggle_Click" Margin="8,0,0,0" />
                         </Grid>
                         <TextBlock Text="{DynamicResource Perf_Gaming_RestartNote}" FontSize="11" Margin="0,6,0,0"
                                    Foreground="{DynamicResource AccentBrush}" TextWrapping="Wrap" />
@@ -201,16 +299,54 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Explorer_ThumbnailsToggle}"
                                        Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
-                            <CheckBox Grid.Column="1" x:Name="ThumbnailsToggle" Style="{StaticResource ToggleSwitchStyle}"
-                                      Click="ThumbnailsToggle_Click" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Explorer_ThumbnailsHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="ThumbnailsToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="ThumbnailsToggle_Click" Margin="8,0,0,0" />
                         </Grid>
-                        <Button Content="{DynamicResource Perf_Explorer_RestartButton}"
-                                Style="{StaticResource SecondaryButtonStyle}"
-                                Click="RestartExplorer_Click" />
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{DynamicResource Perf_Explorer_RestartButton}"
+                                    Style="{StaticResource SecondaryButtonStyle}"
+                                    Click="RestartExplorer_Click" />
+                            <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Explorer_RestartHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                        </StackPanel>
                     </StackPanel>
+                </Expander>
+
+                <!-- Fast Startup -->
+                <Expander Style="{StaticResource SectionExpanderStyle}">
+                    <Expander.Header>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Perf_FastStartup_Title}" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <TextBlock Text="{DynamicResource Perf_FastStartup_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Expander.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{DynamicResource Perf_FastStartup_Toggle}"
+                                   Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
+                        <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_FastStartup_Help}">
+                            <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" />
+                        </Border>
+                        <CheckBox Grid.Column="2" x:Name="FastStartupToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                  Click="FastStartupToggle_Click" Margin="8,0,0,0" />
+                    </Grid>
                 </Expander>
             </StackPanel>
         </ScrollViewer>

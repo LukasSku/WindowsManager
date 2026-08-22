@@ -28,6 +28,7 @@ namespace WindowsManager.App.Views
             LoadNetworkState();
             LoadGamingState();
             LoadExplorerState();
+            LoadFastStartupState();
         }
 
         private void LoadPowerPlans()
@@ -272,6 +273,33 @@ namespace WindowsManager.App.Views
             {
                 NagleToggle.IsEnabled = false;
             }
+
+            try
+            {
+                NetworkThrottlingToggle.IsChecked = NetworkOptimizationService.IsNetworkThrottlingDisabled();
+            }
+            catch
+            {
+                NetworkThrottlingToggle.IsEnabled = false;
+            }
+
+            try
+            {
+                AutoTuningToggle.IsChecked = NetworkOptimizationService.GetTcpAutoTuningLevel() == "normal";
+            }
+            catch
+            {
+                AutoTuningToggle.IsEnabled = false;
+            }
+
+            try
+            {
+                AdapterPowerToggle.IsChecked = NetworkOptimizationService.IsAdapterPowerSavingDisabled();
+            }
+            catch
+            {
+                AdapterPowerToggle.IsEnabled = false;
+            }
         }
 
         private void NagleToggle_Click(object sender, RoutedEventArgs e)
@@ -292,6 +320,51 @@ namespace WindowsManager.App.Views
         private void FlushDns_Click(object sender, RoutedEventArgs e)
         {
             RunWithFeedback(NetworkOptimizationService.FlushDnsCache);
+        }
+
+        private void NetworkThrottlingToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var enabled = NetworkThrottlingToggle.IsChecked == true;
+            try
+            {
+                NetworkOptimizationService.SetNetworkThrottlingDisabled(enabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                NetworkThrottlingToggle.IsChecked = !enabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void AutoTuningToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var enabled = AutoTuningToggle.IsChecked == true;
+            try
+            {
+                NetworkOptimizationService.SetTcpAutoTuningLevel(enabled ? "normal" : "restricted");
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                AutoTuningToggle.IsChecked = !enabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void AdapterPowerToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var disabled = AdapterPowerToggle.IsChecked == true;
+            try
+            {
+                NetworkOptimizationService.SetAdapterPowerSavingDisabled(disabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                AdapterPowerToggle.IsChecked = !disabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
         }
 
         private void LoadGamingState()
@@ -401,6 +474,33 @@ namespace WindowsManager.App.Views
             }
             catch
             {
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void LoadFastStartupState()
+        {
+            try
+            {
+                FastStartupToggle.IsChecked = FastStartupService.IsFastStartupEnabled();
+            }
+            catch
+            {
+                FastStartupToggle.IsEnabled = false;
+            }
+        }
+
+        private void FastStartupToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var enabled = FastStartupToggle.IsChecked == true;
+            try
+            {
+                FastStartupService.SetFastStartupEnabled(enabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                FastStartupToggle.IsChecked = !enabled;
                 ShowStatus((string)FindResource("Status_Error"), success: false);
             }
         }
