@@ -25,6 +25,9 @@ namespace WindowsManager.App.Views
             LoadStartupItems();
             LoadVisualEffectsState();
             LoadServices();
+            LoadNetworkState();
+            LoadGamingState();
+            LoadExplorerState();
         }
 
         private void LoadPowerPlans()
@@ -259,9 +262,147 @@ namespace WindowsManager.App.Views
             }
         }
 
-        private void DiskCleanup_Click(object sender, RoutedEventArgs e)
+        private void LoadNetworkState()
         {
-            RunWithFeedback(() => DiskCleanupService.LaunchDiskCleanup());
+            try
+            {
+                NagleToggle.IsChecked = NetworkOptimizationService.IsNagleDisabled();
+            }
+            catch
+            {
+                NagleToggle.IsEnabled = false;
+            }
+        }
+
+        private void NagleToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var enabled = NagleToggle.IsChecked == true;
+            try
+            {
+                NetworkOptimizationService.SetNagleDisabled(enabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                NagleToggle.IsChecked = !enabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void FlushDns_Click(object sender, RoutedEventArgs e)
+        {
+            RunWithFeedback(NetworkOptimizationService.FlushDnsCache);
+        }
+
+        private void LoadGamingState()
+        {
+            try
+            {
+                GameModeToggle.IsChecked = GameModeService.IsGameModeEnabled();
+            }
+            catch
+            {
+                GameModeToggle.IsEnabled = false;
+            }
+
+            try
+            {
+                GpuSchedulingToggle.IsChecked = GameModeService.IsGpuSchedulingEnabled();
+            }
+            catch
+            {
+                GpuSchedulingToggle.IsEnabled = false;
+            }
+        }
+
+        private void GameModeToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var enabled = GameModeToggle.IsChecked == true;
+            try
+            {
+                GameModeService.SetGameModeEnabled(enabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                GameModeToggle.IsChecked = !enabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void GpuSchedulingToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var enabled = GpuSchedulingToggle.IsChecked == true;
+            try
+            {
+                GameModeService.SetGpuSchedulingEnabled(enabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                GpuSchedulingToggle.IsChecked = !enabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void LoadExplorerState()
+        {
+            try
+            {
+                ThumbnailsToggle.IsChecked = ExplorerTweaksService.AreThumbnailsDisabled();
+            }
+            catch
+            {
+                ThumbnailsToggle.IsEnabled = false;
+            }
+        }
+
+        private void ThumbnailsToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var disabled = ThumbnailsToggle.IsChecked == true;
+            try
+            {
+                ExplorerTweaksService.SetThumbnailsDisabled(disabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                ThumbnailsToggle.IsChecked = !disabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void RestartExplorer_Click(object sender, RoutedEventArgs e)
+        {
+            RunWithFeedback(ExplorerTweaksService.RestartExplorer);
+        }
+
+        private void TempCleanup_Click(object sender, RoutedEventArgs e)
+        {
+            var confirmMessage = (string)FindResource("Confirm_TempCleanup_Message");
+            var confirmTitle = (string)FindResource("Confirm_TempCleanup_Title");
+            var result = MessageBox.Show(confirmMessage, confirmTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                var cleanupResult = TempCleanupService.CleanTempFiles();
+                var mb = cleanupResult.BytesFreed / 1024.0 / 1024.0;
+                var message = string.Format(
+                    (string)FindResource("TempCleanup_Result_Message"),
+                    mb.ToString("F1"),
+                    cleanupResult.FilesDeleted,
+                    cleanupResult.FilesSkipped);
+                MessageBox.Show(message, (string)FindResource("TempCleanup_Result_Title"), MessageBoxButton.OK, MessageBoxImage.Information);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
         }
     }
 }

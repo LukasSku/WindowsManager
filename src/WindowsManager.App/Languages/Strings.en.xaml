@@ -41,9 +41,29 @@
     <sys:String x:Key="Perf_Services_Desc">Disable non-essential background services. Only well-known, safe services are listed.</sys:String>
     <sys:String x:Key="Perf_Services_Warning">Disabling services may affect related Windows features. You can re-enable them anytime.</sys:String>
 
-    <sys:String x:Key="Perf_DiskCleanup_Title">Disk Cleanup</sys:String>
-    <sys:String x:Key="Perf_DiskCleanup_Desc">Free up disk space by removing temporary and unnecessary files.</sys:String>
-    <sys:String x:Key="Perf_DiskCleanup_Button">Open Disk Cleanup</sys:String>
+    <sys:String x:Key="Perf_Network_Title">Network Optimization</sys:String>
+    <sys:String x:Key="Perf_Network_Desc">Reduce latency and refresh DNS settings.</sys:String>
+    <sys:String x:Key="Perf_Network_NagleToggle">Disable Nagle's algorithm (lower latency)</sys:String>
+    <sys:String x:Key="Perf_Network_FlushDnsButton">Flush DNS cache</sys:String>
+
+    <sys:String x:Key="Perf_Gaming_Title">Game Mode &amp; GPU</sys:String>
+    <sys:String x:Key="Perf_Gaming_Desc">Optimize Windows for gaming performance.</sys:String>
+    <sys:String x:Key="Perf_Gaming_GameModeToggle">Windows Game Mode</sys:String>
+    <sys:String x:Key="Perf_Gaming_GpuSchedulingToggle">Hardware-accelerated GPU scheduling</sys:String>
+    <sys:String x:Key="Perf_Gaming_RestartNote">A restart may be required for GPU scheduling changes to take effect.</sys:String>
+
+    <sys:String x:Key="Perf_Explorer_Title">Explorer Performance</sys:String>
+    <sys:String x:Key="Perf_Explorer_Desc">Speed up File Explorer.</sys:String>
+    <sys:String x:Key="Perf_Explorer_ThumbnailsToggle">Disable thumbnail previews (icons only)</sys:String>
+    <sys:String x:Key="Perf_Explorer_RestartButton">Restart Explorer</sys:String>
+
+    <sys:String x:Key="Perf_TempCleanup_Title">Quick Temp File Cleanup</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Desc">Instantly delete temporary files without opening a separate dialog.</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Button">Clean temporary files</sys:String>
+    <sys:String x:Key="Confirm_TempCleanup_Title">Delete temporary files?</sys:String>
+    <sys:String x:Key="Confirm_TempCleanup_Message">This will permanently delete temporary files from %TEMP% and C:\Windows\Temp. Files currently in use are skipped automatically. Continue?</sys:String>
+    <sys:String x:Key="TempCleanup_Result_Title">Cleanup complete</sys:String>
+    <sys:String x:Key="TempCleanup_Result_Message">Freed {0} MB by deleting {1} files ({2} files skipped because they were in use).</sys:String>
 
     <sys:String x:Key="Common_Refresh">Refresh</sys:String>
     <sys:String x:Key="Common_NotAvailable">Not available on this system</sys:String>

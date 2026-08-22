@@ -111,25 +111,110 @@
                 <!-- Disk Cleanup -->
                 <Expander Style="{StaticResource SectionExpanderStyle}">
                     <Expander.Header>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Perf_TempCleanup_Title}" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <TextBlock Text="{DynamicResource Perf_TempCleanup_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Expander.Header>
+                    <Button Content="{DynamicResource Perf_TempCleanup_Button}"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Click="TempCleanup_Click" />
+                </Expander>
+
+                <!-- Network Optimization -->
+                <Expander Style="{StaticResource SectionExpanderStyle}">
+                    <Expander.Header>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Perf_Network_Title}" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <TextBlock Text="{DynamicResource Perf_Network_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Expander.Header>
+                    <StackPanel>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Network_NagleToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
+                            <CheckBox Grid.Column="1" x:Name="NagleToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="NagleToggle_Click" />
+                        </Grid>
+                        <Button Content="{DynamicResource Perf_Network_FlushDnsButton}"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Click="FlushDns_Click" />
+                    </StackPanel>
+                </Expander>
+
+                <!-- Game Mode & GPU -->
+                <Expander Style="{StaticResource SectionExpanderStyle}">
+                    <Expander.Header>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Perf_Gaming_Title}" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <TextBlock Text="{DynamicResource Perf_Gaming_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Expander.Header>
+                    <StackPanel>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Gaming_GameModeToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
+                            <CheckBox Grid.Column="1" x:Name="GameModeToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="GameModeToggle_Click" />
+                        </Grid>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0">
-                                <TextBlock Text="{DynamicResource Perf_DiskCleanup_Title}" FontSize="16" FontWeight="SemiBold"
-                                           Foreground="{DynamicResource PrimaryTextBrush}" />
-                                <TextBlock Text="{DynamicResource Perf_DiskCleanup_Desc}" FontSize="12" Margin="0,2,0,0"
-                                           Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
-                            </StackPanel>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Gaming_GpuSchedulingToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
+                            <CheckBox Grid.Column="1" x:Name="GpuSchedulingToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="GpuSchedulingToggle_Click" />
                         </Grid>
+                        <TextBlock Text="{DynamicResource Perf_Gaming_RestartNote}" FontSize="11" Margin="0,6,0,0"
+                                   Foreground="{DynamicResource AccentBrush}" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Expander>
+
+                <!-- Explorer Performance -->
+                <Expander Style="{StaticResource SectionExpanderStyle}">
+                    <Expander.Header>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Perf_Explorer_Title}" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <TextBlock Text="{DynamicResource Perf_Explorer_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
                     </Expander.Header>
-                    <Button Content="{DynamicResource Perf_DiskCleanup_Button}"
-                            Style="{StaticResource TopBarButtonStyle}" Width="Auto" Padding="14,0"
-                            HorizontalAlignment="Left" Click="DiskCleanup_Click" />
+                    <StackPanel>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Explorer_ThumbnailsToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" />
+                            <CheckBox Grid.Column="1" x:Name="ThumbnailsToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="ThumbnailsToggle_Click" />
+                        </Grid>
+                        <Button Content="{DynamicResource Perf_Explorer_RestartButton}"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Click="RestartExplorer_Click" />
+                    </StackPanel>
                 </Expander>
             </StackPanel>
         </ScrollViewer>
+
 
         <!-- Status bar for success/error feedback -->
         <Border x:Name="StatusBar" Grid.Row="1" Padding="16,10" Visibility="Collapsed"
