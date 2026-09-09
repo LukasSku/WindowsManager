@@ -18,6 +18,21 @@
     <sys:String x:Key="Dashboard_Disk_Title">Speicherplatz</sys:String>
     <sys:String x:Key="Dashboard_System_Title">System</sys:String>
 
+    <sys:String x:Key="Dashboard_AutoOptimize_Title">Auto-Optimieren</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_Desc">Wendet mit einem Klick eine kuratierte Auswahl empfohlener Performance- und Privacy-Tweaks an, oder setzt sie wieder auf Windows-Standard zurück.</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_Help">Wendet ein Bündel ausgewählter, empfohlener Tweaks auf einmal an: Energieplan „Ultimative Leistung", visuelle Effekte auf beste Leistung, Nagle-Algorithmus/Netzwerk-Drosselung/Adapter-Energiesparen/Delivery Optimization angepasst, Game Mode + GPU-Scheduling an, Explorer ohne Thumbnails, Schnellstart an, Hintergrund-Apps/Widgets/Copilot aus, alle kuratierten Windows-Dienste und geplanten Tasks deaktiviert, alle Privacy-Schalter aktiviert, sowie eine einmalige Temp-Bereinigung. „Zurücksetzen" macht alles davon wieder rückgängig (außer der einmaligen Bereinigung, die sich nicht rückgängig machen lässt) und stellt Windows-Standardwerte wieder her. Autostart-Programme werden von diesen Buttons nie angefasst - die verwaltest du weiterhin einzeln auf der Performance-Seite.</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_OptimizeButton">Jetzt optimieren</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_ResetButton">Auf Standard zurücksetzen</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_Success">Fertig - {0} Einstellungen optimiert.</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_ResetSuccess">Fertig - {0} Einstellungen auf Standard zurückgesetzt.</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_Error">Etwas ist schiefgelaufen: {0}</sys:String>
+
+    <sys:String x:Key="Confirm_AutoOptimize_Title">Auto-Optimieren anwenden?</sys:String>
+    <sys:String x:Key="Confirm_AutoOptimize_Message">Dies ändert auf einmal viele Performance- und Privacy-Einstellungen (Energieplan, visuelle Effekte, Netzwerkeinstellungen, Game Mode/GPU-Scheduling, Explorer, Schnellstart, Hintergrund-Apps/Widgets/Copilot, kuratierte Dienste und geplante Tasks, alle Privacy-Schalter) und führt eine einmalige Temp-Bereinigung aus. Fortfahren?</sys:String>
+
+    <sys:String x:Key="Confirm_AutoOptimizeReset_Title">Auf Windows-Standard zurücksetzen?</sys:String>
+    <sys:String x:Key="Confirm_AutoOptimizeReset_Message">Dies setzt die von Auto-Optimieren geänderten Einstellungen (Energieplan, visuelle Effekte, Netzwerkeinstellungen, Game Mode/GPU-Scheduling, Explorer, Schnellstart, Hintergrund-Apps/Widgets/Copilot, kuratierte Dienste und geplante Tasks, alle Privacy-Schalter) wieder auf die Windows-Standardwerte zurück. Fortfahren?</sys:String>
+
     <sys:String x:Key="Dashboard_RestorePoint_Title">Systemwiederherstellungspunkt</sys:String>
     <sys:String x:Key="Dashboard_RestorePoint_Desc">Erstelle ein Sicherheitsnetz vor Tweaks, oder öffne Windows' eigenes Wiederherstellungs-Tool.</sys:String>
     <sys:String x:Key="Dashboard_RestorePoint_Help">Erstellt einen Windows-Systemwiederherstellungspunkt - einen Schnappschuss der Systemdateien, installierten Programme und Registry-Einstellungen, mit dem du deinen PC zurücksetzen kannst, falls ein Tweak Probleme verursacht. Windows erlaubt standardmäßig nur einen Wiederherstellungspunkt pro 24 Stunden. Die eigentliche Wiederherstellung läuft immer über Windows' offizielles Tool (rstrui.exe), niemals automatisch über diese App.</sys:String>

@@ -25,6 +25,77 @@ namespace WindowsManager.App.Views
             Unloaded += (_, _) => _refreshTimer.Stop();
         }
 
+        private async void AutoOptimize_Click(object sender, RoutedEventArgs e)
+        {
+            var confirm = MessageBox.Show(
+                (string)FindResource("Confirm_AutoOptimize_Message"),
+                (string)FindResource("Confirm_AutoOptimize_Title"),
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (confirm != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            var button = (Button)sender;
+            button.IsEnabled = false;
+
+            try
+            {
+                var appliedCount = await Task.Run(AutoOptimizeService.Optimize);
+                ShowAutoOptimizeStatus(string.Format((string)FindResource("Dashboard_AutoOptimize_Success"), appliedCount), success: true);
+            }
+            catch (Exception ex)
+            {
+                ShowAutoOptimizeStatus(string.Format((string)FindResource("Dashboard_AutoOptimize_Error"), ex.Message), success: false);
+            }
+            finally
+            {
+                button.IsEnabled = true;
+            }
+        }
+
+        private async void AutoOptimizeReset_Click(object sender, RoutedEventArgs e)
+        {
+            var confirm = MessageBox.Show(
+                (string)FindResource("Confirm_AutoOptimizeReset_Message"),
+                (string)FindResource("Confirm_AutoOptimizeReset_Title"),
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (confirm != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            var button = (Button)sender;
+            button.IsEnabled = false;
+
+            try
+            {
+                var appliedCount = await Task.Run(AutoOptimizeService.Reset);
+                ShowAutoOptimizeStatus(string.Format((string)FindResource("Dashboard_AutoOptimize_ResetSuccess"), appliedCount), success: true);
+            }
+            catch (Exception ex)
+            {
+                ShowAutoOptimizeStatus(string.Format((string)FindResource("Dashboard_AutoOptimize_Error"), ex.Message), success: false);
+            }
+            finally
+            {
+                button.IsEnabled = true;
+            }
+        }
+
+        private void ShowAutoOptimizeStatus(string message, bool success)
+        {
+            AutoOptimizeStatusText.Text = message;
+            AutoOptimizeStatusText.Foreground = success
+                ? new SolidColorBrush(Color.FromRgb(0x4C, 0xAF, 0x50))
+                : new SolidColorBrush(Color.FromRgb(0xE5, 0x53, 0x53));
+            AutoOptimizeStatusText.Visibility = Visibility.Visible;
+        }
+
         private async void CreateRestorePoint_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;

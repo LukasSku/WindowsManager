@@ -18,6 +18,21 @@
     <sys:String x:Key="Dashboard_Disk_Title">Storage</sys:String>
     <sys:String x:Key="Dashboard_System_Title">System</sys:String>
 
+    <sys:String x:Key="Dashboard_AutoOptimize_Title">Auto-Optimize</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_Desc">Apply a curated set of recommended Performance and Privacy tweaks in one click, or reset them back to Windows defaults.</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_Help">Applies a hand-picked bundle of recommended tweaks at once: Ultimate Performance power plan, best-performance visual effects, Nagle/network throttling/adapter power saving/Delivery Optimization tweaks, Game Mode + GPU scheduling, Explorer without thumbnails, Fast Startup, disabled background apps/Widgets/Copilot, all curated Windows services and scheduled tasks disabled, all Privacy toggles enabled, and a one-time temp file cleanup. "Reset" reverts all of the above (except the one-time cleanup, which can't be undone) back to Windows' out-of-the-box defaults. Startup programs are never touched by these buttons - manage those individually on the Performance page.</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_OptimizeButton">Optimize now</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_ResetButton">Reset to defaults</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_Success">Done - {0} settings optimized.</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_ResetSuccess">Done - {0} settings reset to defaults.</sys:String>
+    <sys:String x:Key="Dashboard_AutoOptimize_Error">Something went wrong: {0}</sys:String>
+
+    <sys:String x:Key="Confirm_AutoOptimize_Title">Apply Auto-Optimize?</sys:String>
+    <sys:String x:Key="Confirm_AutoOptimize_Message">This will change many Performance and Privacy settings at once (power plan, visual effects, network settings, Game Mode/GPU scheduling, Explorer, Fast Startup, background apps/Widgets/Copilot, curated services and scheduled tasks, all privacy toggles) and run a one-time temp file cleanup. Continue?</sys:String>
+
+    <sys:String x:Key="Confirm_AutoOptimizeReset_Title">Reset to Windows defaults?</sys:String>
+    <sys:String x:Key="Confirm_AutoOptimizeReset_Message">This will revert the settings changed by Auto-Optimize (power plan, visual effects, network settings, Game Mode/GPU scheduling, Explorer, Fast Startup, background apps/Widgets/Copilot, curated services and scheduled tasks, all privacy toggles) back to Windows' out-of-the-box defaults. Continue?</sys:String>
+
     <sys:String x:Key="Dashboard_RestorePoint_Title">System Restore Point</sys:String>
     <sys:String x:Key="Dashboard_RestorePoint_Desc">Create a safety net before applying tweaks, or open Windows' own restore tool.</sys:String>
     <sys:String x:Key="Dashboard_RestorePoint_Help">Creates a Windows System Restore point - a snapshot of system files, installed programs and registry settings that lets you roll your PC back if a tweak causes problems. Windows only allows creating one restore point per 24 hours by default. Restoring itself always happens through Windows' own official tool (rstrui.exe), never automatically from this app.</sys:String>
