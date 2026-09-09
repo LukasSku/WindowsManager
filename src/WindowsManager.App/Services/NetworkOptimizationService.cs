@@ -145,6 +145,7 @@ namespace WindowsManager.App.Services
                 UseShellExecute = false,
                 CreateNoWindow = true,
                 RedirectStandardOutput = true,
+                StandardOutputEncoding = ConsoleEncodingHelper.OemEncoding,
             };
 
             using var process = Process.Start(psi);

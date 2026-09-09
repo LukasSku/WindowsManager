@@ -1,6 +1,5 @@
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Text;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace WindowsManager.App.Services
@@ -12,8 +11,9 @@ namespace WindowsManager.App.Services
     /// </summary>
     public static partial class PowerPlanService
     {
-        [DllImport("kernel32.dll")]
-        private static extern int GetOEMCP();
+        // Well-known source GUID for the hidden "Ultimate Performance" power plan, present on every
+        // Windows install since 1803 but only exposed via "powercfg -duplicatescheme".
+        private const string UltimatePerformanceSourceGuid = "e9a42b02-d5df-448d-aa00-03f14749eb61";
 
         // powercfg's line labels (e.g. "Power Scheme GUID:") are localized based on the
         // Windows display language, so matching against the English text fails on non-English
@@ -69,6 +69,32 @@ namespace WindowsManager.App.Services
             RunPowerCfg($"/setactive {guid}");
         }
 
+        /// <summary>
+        /// Unlocks (if needed) and activates the hidden "Ultimate Performance" power plan. Windows keeps
+        /// the CPU parked/throttled less aggressively under this plan than even "High performance",
+        /// which noticeably helps short bursts of desktop responsiveness at the cost of higher idle power
+        /// draw - not recommended for laptops running on battery.
+        /// </summary>
+        public static void EnableUltimatePerformancePlan()
+        {
+            var existing = GetPlans().FirstOrDefault(p =>
+                p.Name.Contains("Ultimate", StringComparison.OrdinalIgnoreCase) ||
+                p.Name.Contains("Ultimative", StringComparison.OrdinalIgnoreCase));
+
+            if (existing is not null)
+            {
+                SetActive(existing.Guid);
+                return;
+            }
+
+            var output = RunPowerCfg($"/duplicatescheme {UltimatePerformanceSourceGuid}");
+            var match = GuidRegex().Match(output);
+            if (match.Success)
+            {
+                SetActive(match.Value);
+            }
+        }
+
         private static string RunPowerCfg(string arguments)
         {
             var psi = new ProcessStartInfo("powercfg.exe", arguments)
@@ -76,7 +102,7 @@ namespace WindowsManager.App.Services
                 RedirectStandardOutput = true,
                 UseShellExecute = false,
                 CreateNoWindow = true,
-                StandardOutputEncoding = GetOemEncoding(),
+                StandardOutputEncoding = ConsoleEncodingHelper.OemEncoding,
             };
 
             using var process = Process.Start(psi);
@@ -88,21 +114,6 @@ namespace WindowsManager.App.Services
             var output = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
             return output;
-        }
-
-        private static Encoding GetOemEncoding()
-        {
-            try
-            {
-                return Encoding.GetEncoding(GetOEMCP());
-            }
-            catch (NotSupportedException)
-            {
-                // Falls back to the process default if the OEM codepage can't be resolved
-                // (e.g. CodePagesEncodingProvider wasn't registered) - GUID parsing still
-                // works since it doesn't depend on correctly decoded non-ASCII characters.
-                return Encoding.Default;
-            }
         }
     }
 }

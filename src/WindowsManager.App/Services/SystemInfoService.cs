@@ -26,6 +26,9 @@ namespace WindowsManager.App.Services
         public double UsagePercent => TotalGb <= 0 ? 0 : UsedGb / TotalGb * 100.0;
     }
 
+    /// <summary>Static OS/machine info that doesn't require the (comparatively slow) CPU/RAM/drive snapshot.</summary>
+    public sealed record StaticSystemInfo(string OsDisplayName, string OsBuild);
+
     /// <summary>
     /// Reads live CPU/RAM/disk metrics and static OS info for the Dashboard. Uses a <see cref="PerformanceCounter"/>
     /// for total CPU usage (requires two samples over time, handled by the caller via a timer) and Win32
@@ -34,6 +37,13 @@ namespace WindowsManager.App.Services
     public static class SystemInfoService
     {
         private static PerformanceCounter? _cpuCounter;
+
+        /// <summary>
+        /// Cheap, registry-only OS info - deliberately kept separate from <see cref="GetSnapshot"/> so
+        /// callers that only need this don't pay for the first (slow, ~100-300ms) PerformanceCounter
+        /// initialization or a drive enumeration.
+        /// </summary>
+        public static StaticSystemInfo GetStaticInfo() => new(GetOsDisplayName(), Environment.OSVersion.Version.Build.ToString());
 
         public static SystemSnapshot GetSnapshot()
         {

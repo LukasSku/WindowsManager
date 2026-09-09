@@ -63,6 +63,8 @@
     <sys:String x:Key="Perf_PowerPlan_Title">Power Plan</sys:String>
     <sys:String x:Key="Perf_PowerPlan_Desc">Choose how Windows balances performance and energy usage.</sys:String>
     <sys:String x:Key="Perf_PowerPlan_Help">Windows power plans control CPU speed, screen timeout and sleep behavior. "High performance" / "Ultimate performance" keep the CPU running faster at the cost of more power draw and heat, which is usually fine for desktops but drains laptop batteries faster.</sys:String>
+    <sys:String x:Key="Perf_PowerPlan_UltimateButton">Enable Ultimate Performance</sys:String>
+    <sys:String x:Key="Perf_PowerPlan_UltimateHelp">Unlocks the hidden "Ultimate Performance" power plan and switches to it. It throttles the CPU even less than "High performance", making short bursts of activity slightly more responsive - at the cost of higher idle power draw/heat, so it's best suited for desktops rather than laptops.</sys:String>
 
     <sys:String x:Key="Perf_Startup_Title">Startup Programs</sys:String>
     <sys:String x:Key="Perf_Startup_Desc">Enable or disable programs that launch automatically with Windows.</sys:String>

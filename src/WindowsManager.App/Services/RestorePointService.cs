@@ -26,6 +26,8 @@ namespace WindowsManager.App.Services
                 CreateNoWindow = true,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
+                StandardOutputEncoding = ConsoleEncodingHelper.OemEncoding,
+                StandardErrorEncoding = ConsoleEncodingHelper.OemEncoding,
             };
 
             using var process = Process.Start(psi);

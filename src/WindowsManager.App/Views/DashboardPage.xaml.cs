@@ -128,16 +128,38 @@ namespace WindowsManager.App.Views
 
         private void LoadStaticInfo()
         {
-            var snapshot = SystemInfoService.GetSnapshot();
-            OsNameText.Text = snapshot.OsDisplayName;
-            OsBuildText.Text = $"Build {snapshot.OsBuild}";
+            var info = SystemInfoService.GetStaticInfo();
+            OsNameText.Text = info.OsDisplayName;
+            OsBuildText.Text = $"Build {info.OsBuild}";
             MachineNameText.Text = Environment.MachineName;
         }
 
-        private void RefreshSnapshot()
-        {
-            var snapshot = SystemInfoService.GetSnapshot();
+        private bool _isRefreshingSnapshot;
 
+        private async void RefreshSnapshot()
+        {
+            // GetSnapshot() creates/queries a PerformanceCounter and enumerates drives, both of which
+            // can block for a noticeable amount of time (especially the very first call) - running it
+            // off the UI thread keeps the window responsive during startup and on every timer tick.
+            if (_isRefreshingSnapshot)
+            {
+                return;
+            }
+
+            _isRefreshingSnapshot = true;
+            try
+            {
+                var snapshot = await Task.Run(SystemInfoService.GetSnapshot);
+                ApplySnapshot(snapshot);
+            }
+            finally
+            {
+                _isRefreshingSnapshot = false;
+            }
+        }
+
+        private void ApplySnapshot(SystemSnapshot snapshot)
+        {
             CpuPercentText.Text = $"{snapshot.CpuUsagePercent:0}%";
             CpuBarFill.Width = CpuBarFill.Parent is Border track ? track.ActualWidth * snapshot.CpuUsagePercent / 100.0 : 0;
 

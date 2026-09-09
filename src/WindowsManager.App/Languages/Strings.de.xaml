@@ -63,6 +63,8 @@
     <sys:String x:Key="Perf_PowerPlan_Title">Energieplan</sys:String>
     <sys:String x:Key="Perf_PowerPlan_Desc">Lege fest, wie Windows Leistung und Energieverbrauch abwägt.</sys:String>
     <sys:String x:Key="Perf_PowerPlan_Help">Energiepläne steuern Prozessortakt, Bildschirm-Timeout und Ruhezustand. "Höchstleistung"/"Ultimative Leistung" halten die CPU auf höherer Taktrate, was mehr Strom/Wärme kostet - bei Desktop-PCs meist unproblematisch, bei Laptops verkürzt es die Akkulaufzeit.</sys:String>
+    <sys:String x:Key="Perf_PowerPlan_UltimateButton">Ultimative Leistung aktivieren</sys:String>
+    <sys:String x:Key="Perf_PowerPlan_UltimateHelp">Schaltet den standardmäßig versteckten Energieplan "Ultimative Leistung" frei und aktiviert ihn. Er drosselt die CPU noch weniger als "Höchstleistung", was kurze Lastspitzen etwas reaktionsschneller macht - kostet aber mehr Strom/Wärme im Leerlauf und ist daher vor allem für Desktop-PCs sinnvoll.</sys:String>
 
     <sys:String x:Key="Perf_Startup_Title">Autostart-Programme</sys:String>
     <sys:String x:Key="Perf_Startup_Desc">Aktiviere oder deaktiviere Programme, die automatisch mit Windows starten.</sys:String>

@@ -73,6 +73,15 @@ namespace WindowsManager.App.Views
             PowerPlanList.Items.Add(panel);
         }
 
+        private void EnableUltimatePerformance_Click(object sender, RoutedEventArgs e)
+        {
+            RunWithFeedback(() =>
+            {
+                PowerPlanService.EnableUltimatePerformancePlan();
+                LoadPowerPlans();
+            });
+        }
+
         private async void LoadStartupItems()
         {
             StartupLoadingText.Visibility = Visibility.Visible;
