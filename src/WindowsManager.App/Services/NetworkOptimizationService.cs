@@ -13,6 +13,7 @@ namespace WindowsManager.App.Services
         private const string InterfacesKeyPath = @"SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces";
         private const string MultimediaProfileKeyPath = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile";
         private const string NetworkAdapterClassKeyPath = @"SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}";
+        private const string DeliveryOptimizationKeyPath = @"SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization";
         private const int PnpCapabilitiesPowerSavingDisabled = 24; // 0x18: disallow power-off + disallow wake
 
         /// <summary>
@@ -214,6 +215,37 @@ namespace WindowsManager.App.Services
 
             using var process = Process.Start(psi);
             process?.WaitForExit();
+        }
+
+        /// <summary>
+        /// "Delivery Optimization" lets Windows Update/Store downloads be shared peer-to-peer with
+        /// other PCs (on the LAN and/or over the internet) to save Microsoft's bandwidth. Restricting
+        /// it to plain HTTP downloads (DODownloadMode=0) avoids background upload traffic to other
+        /// devices, at the cost of Windows Update downloads no longer benefiting from local peers.
+        /// </summary>
+        public static bool IsDeliveryOptimizationRestricted()
+        {
+            using var key = Registry.LocalMachine.OpenSubKey(DeliveryOptimizationKeyPath, writable: false);
+            var value = key?.GetValue("DODownloadMode") as int?;
+            return value == 0;
+        }
+
+        public static void SetDeliveryOptimizationRestricted(bool restricted)
+        {
+            using var key = Registry.LocalMachine.CreateSubKey(DeliveryOptimizationKeyPath, writable: true);
+            if (key is null)
+            {
+                return;
+            }
+
+            if (restricted)
+            {
+                key.SetValue("DODownloadMode", 0, RegistryValueKind.DWord);
+            }
+            else
+            {
+                key.DeleteValue("DODownloadMode", throwOnMissingValue: false);
+            }
         }
     }
 }

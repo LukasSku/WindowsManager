@@ -41,6 +41,8 @@ public static class TweakSearchIndex
         new("Perf_Startup_Title", "Perf_Startup_Desc", TweakPage.Performance, "StartupSection"),
         new("Perf_VisualEffects_Title", "Perf_VisualEffects_Desc", TweakPage.Performance, "VisualEffectsSection"),
         new("Perf_Services_Title", "Perf_Services_Desc", TweakPage.Performance, "ServicesSection"),
+        new("Perf_ScheduledTasks_Title", "Perf_ScheduledTasks_Desc", TweakPage.Performance, "ScheduledTasksSection"),
+        new("Perf_Debloat_Title", "Perf_Debloat_Desc", TweakPage.Performance, "DebloatSection"),
         new("Perf_TempCleanup_Title", "Perf_TempCleanup_Desc", TweakPage.Performance, "TempCleanupSection"),
         new("Perf_Network_Title", "Perf_Network_Desc", TweakPage.Performance, "NetworkSection"),
         new("Perf_Gaming_Title", "Perf_Gaming_Desc", TweakPage.Performance, "GamingSection"),
@@ -57,6 +59,8 @@ public static class TweakSearchIndex
 
         new("AppManager_Install_Title", "AppManager_Install_Desc", TweakPage.AppManager, "InstallSection"),
         new("AppManager_Installed_Title", "AppManager_Installed_Desc", TweakPage.AppManager, "InstalledSection"),
+        new("AppManager_Recommended_Title", "AppManager_Recommended_Desc", TweakPage.AppManager, "RecommendedSection"),
+        new("AppManager_Bloatware_Title", "AppManager_Bloatware_Desc", TweakPage.AppManager, "BloatwareSection"),
     };
 
     /// <summary>

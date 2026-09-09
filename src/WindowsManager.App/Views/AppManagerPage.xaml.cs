@@ -24,6 +24,211 @@ namespace WindowsManager.App.Views
             };
 
             LoadInstalledApps();
+            LoadRecommendedApps();
+            LoadBloatware();
+        }
+
+        // --- Recommended apps (curated one-click installs) -------------------------------
+
+        private void LoadRecommendedApps()
+        {
+            var panel = new StackPanel();
+            foreach (var app in RecommendedAppsService.Apps)
+            {
+                panel.Children.Add(BuildRecommendedAppRow(app));
+            }
+
+            RecommendedList.Items.Clear();
+            RecommendedList.Items.Add(panel);
+        }
+
+        private FrameworkElement BuildRecommendedAppRow(RecommendedApp app)
+        {
+            var grid = new Grid { Margin = new Thickness(0, 4, 0, 4) };
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+            var textPanel = new StackPanel();
+            textPanel.Children.Add(new TextBlock
+            {
+                Text = app.DisplayName,
+                Foreground = (Brush)FindResource("PrimaryTextBrush"),
+                TextWrapping = TextWrapping.Wrap,
+            });
+            textPanel.Children.Add(new TextBlock
+            {
+                Text = app.Description,
+                FontSize = 11,
+                Foreground = (Brush)FindResource("SecondaryTextBrush"),
+                TextWrapping = TextWrapping.Wrap,
+            });
+            Grid.SetColumn(textPanel, 0);
+
+            var installButton = new Button
+            {
+                Style = (Style)FindResource("SecondaryButtonStyle"),
+                Content = (string)FindResource("AppManager_InstallButton"),
+                Padding = new Thickness(12, 6, 12, 6),
+                FontSize = 12,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            installButton.Click += async (_, _) =>
+            {
+                installButton.IsEnabled = false;
+                installButton.Content = (string)FindResource("AppManager_Installing");
+
+                var success = false;
+                try
+                {
+                    var result = await Task.Run(() => WingetService.Install(app.WingetId));
+                    success = result.Success;
+                }
+                catch
+                {
+                    success = false;
+                }
+
+                installButton.IsEnabled = true;
+                installButton.Content = (string)FindResource("AppManager_InstallButton");
+                ShowStatus(
+                    success ? (string)FindResource("Status_Success") : (string)FindResource("Status_Error"),
+                    success);
+
+                if (success)
+                {
+                    LoadInstalledApps();
+                }
+            };
+            Grid.SetColumn(installButton, 1);
+
+            grid.Children.Add(textPanel);
+            grid.Children.Add(installButton);
+            return grid;
+        }
+
+        // --- Preinstalled bloatware removal -----------------------------------------------
+
+        private void RefreshBloatware_Click(object sender, RoutedEventArgs e) => LoadBloatware();
+
+        private async void LoadBloatware()
+        {
+            BloatwareLoadingText.Visibility = Visibility.Visible;
+            BloatwareList.Visibility = Visibility.Collapsed;
+
+            List<BloatwareAppInfo>? apps = null;
+            try
+            {
+                apps = await Task.Run(AppxBloatwareService.GetApps);
+            }
+            catch
+            {
+                // handled below via null check
+            }
+
+            var panel = new StackPanel();
+
+            if (apps is null)
+            {
+                panel.Children.Add(new TextBlock
+                {
+                    Text = (string)FindResource("Common_NotAvailable"),
+                    Foreground = (Brush)FindResource("SecondaryTextBrush"),
+                });
+            }
+            else
+            {
+                foreach (var app in apps)
+                {
+                    panel.Children.Add(BuildBloatwareRow(app));
+                }
+            }
+
+            BloatwareList.Items.Clear();
+            BloatwareList.Items.Add(panel);
+            BloatwareLoadingText.Visibility = Visibility.Collapsed;
+            BloatwareList.Visibility = Visibility.Visible;
+        }
+
+        private FrameworkElement BuildBloatwareRow(BloatwareAppInfo app)
+        {
+            var grid = new Grid { Margin = new Thickness(0, 4, 0, 4) };
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+            var textPanel = new StackPanel();
+            textPanel.Children.Add(new TextBlock
+            {
+                Text = app.DisplayName,
+                Foreground = (Brush)FindResource("PrimaryTextBrush"),
+                TextWrapping = TextWrapping.Wrap,
+            });
+            textPanel.Children.Add(new TextBlock
+            {
+                Text = app.Description,
+                FontSize = 11,
+                Foreground = (Brush)FindResource("SecondaryTextBrush"),
+                TextWrapping = TextWrapping.Wrap,
+            });
+            Grid.SetColumn(textPanel, 0);
+
+            if (!app.IsInstalled)
+            {
+                var notInstalledText = new TextBlock
+                {
+                    Text = (string)FindResource("AppManager_AlreadyRemoved"),
+                    FontSize = 12,
+                    Foreground = (Brush)FindResource("SecondaryTextBrush"),
+                    VerticalAlignment = VerticalAlignment.Center,
+                };
+                Grid.SetColumn(notInstalledText, 1);
+                grid.Children.Add(textPanel);
+                grid.Children.Add(notInstalledText);
+                return grid;
+            }
+
+            var removeButton = new Button
+            {
+                Style = (Style)FindResource("SecondaryButtonStyle"),
+                Content = (string)FindResource("AppManager_RemoveButton"),
+                Padding = new Thickness(12, 6, 12, 6),
+                FontSize = 12,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            removeButton.Click += async (_, _) =>
+            {
+                var message = string.Format((string)FindResource("Confirm_RemoveBloatware_Message"), app.DisplayName);
+                var title = (string)FindResource("Confirm_RemoveBloatware_Title");
+                var result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
+                removeButton.IsEnabled = false;
+                removeButton.Content = (string)FindResource("AppManager_Removing");
+
+                var success = false;
+                try
+                {
+                    await Task.Run(() => AppxBloatwareService.Remove(app));
+                    success = true;
+                }
+                catch
+                {
+                    success = false;
+                }
+
+                ShowStatus(
+                    success ? (string)FindResource("Status_Success") : (string)FindResource("Status_Error"),
+                    success);
+
+                LoadBloatware();
+            };
+            Grid.SetColumn(removeButton, 1);
+
+            grid.Children.Add(textPanel);
+            grid.Children.Add(removeButton);
+            return grid;
         }
 
         // --- Winget search / install -----------------------------------------------------

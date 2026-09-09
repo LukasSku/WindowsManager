@@ -30,6 +30,10 @@ namespace WindowsManager.App.Services
             public bool GpuSchedulingEnabled { get; set; }
             public bool ExplorerThumbnailsDisabled { get; set; }
             public bool FastStartupEnabled { get; set; }
+            public bool BackgroundAppsDisabled { get; set; }
+            public bool WidgetsDisabled { get; set; }
+            public bool CopilotDisabled { get; set; }
+            public bool DeliveryOptimizationRestricted { get; set; }
 
             public bool PrivacyTelemetryReduced { get; set; }
             public bool PrivacyAdvertisingIdDisabled { get; set; }
@@ -41,6 +45,7 @@ namespace WindowsManager.App.Services
 
             public Dictionary<string, bool> ServiceEnabledByName { get; set; } = new();
             public Dictionary<string, bool> StartupEnabledByName { get; set; } = new();
+            public Dictionary<string, bool> ScheduledTaskEnabledByPath { get; set; } = new();
         }
 
         private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
@@ -76,6 +81,10 @@ namespace WindowsManager.App.Services
                 GpuSchedulingEnabled = GameModeService.IsGpuSchedulingEnabled(),
                 ExplorerThumbnailsDisabled = ExplorerTweaksService.AreThumbnailsDisabled(),
                 FastStartupEnabled = FastStartupService.IsFastStartupEnabled(),
+                BackgroundAppsDisabled = BackgroundAppsService.IsDisabled(),
+                WidgetsDisabled = WindowsUiTweaksService.IsWidgetsDisabled(),
+                CopilotDisabled = WindowsUiTweaksService.IsCopilotDisabled(),
+                DeliveryOptimizationRestricted = NetworkOptimizationService.IsDeliveryOptimizationRestricted(),
 
                 PrivacyTelemetryReduced = PrivacyService.IsTelemetryReduced(),
                 PrivacyAdvertisingIdDisabled = PrivacyService.IsAdvertisingIdDisabled(),
@@ -97,6 +106,14 @@ namespace WindowsManager.App.Services
             foreach (var item in StartupService.GetStartupItems())
             {
                 snapshot.StartupEnabledByName[item.Name] = item.IsEnabled;
+            }
+
+            foreach (var task in ScheduledTaskService.GetTasks())
+            {
+                if (task.Exists)
+                {
+                    snapshot.ScheduledTaskEnabledByPath[task.Path] = task.IsEnabled;
+                }
             }
 
             return snapshot;
@@ -123,6 +140,10 @@ namespace WindowsManager.App.Services
             Apply(() => GameModeService.SetGpuSchedulingEnabled(snapshot.GpuSchedulingEnabled), ref appliedCount);
             Apply(() => ExplorerTweaksService.SetThumbnailsDisabled(snapshot.ExplorerThumbnailsDisabled), ref appliedCount);
             Apply(() => FastStartupService.SetFastStartupEnabled(snapshot.FastStartupEnabled), ref appliedCount);
+            Apply(() => BackgroundAppsService.SetDisabled(snapshot.BackgroundAppsDisabled), ref appliedCount);
+            Apply(() => WindowsUiTweaksService.SetWidgetsDisabled(snapshot.WidgetsDisabled), ref appliedCount);
+            Apply(() => WindowsUiTweaksService.SetCopilotDisabled(snapshot.CopilotDisabled), ref appliedCount);
+            Apply(() => NetworkOptimizationService.SetDeliveryOptimizationRestricted(snapshot.DeliveryOptimizationRestricted), ref appliedCount);
 
             Apply(() => PrivacyService.SetTelemetryReduced(snapshot.PrivacyTelemetryReduced), ref appliedCount);
             Apply(() => PrivacyService.SetAdvertisingIdDisabled(snapshot.PrivacyAdvertisingIdDisabled), ref appliedCount);
@@ -157,6 +178,20 @@ namespace WindowsManager.App.Services
                     }
 
                     try { StartupService.SetEnabled(item, enabled); appliedCount++; } catch { }
+                }
+            }
+
+            if (snapshot.ScheduledTaskEnabledByPath.Count > 0)
+            {
+                var existingTasks = ScheduledTaskService.GetTasks().Where(t => t.Exists).Select(t => t.Path).ToHashSet();
+                foreach (var (path, enabled) in snapshot.ScheduledTaskEnabledByPath)
+                {
+                    if (!existingTasks.Contains(path))
+                    {
+                        continue; // Task no longer present on this system - skip.
+                    }
+
+                    try { ScheduledTaskService.SetEnabled(path, enabled); appliedCount++; } catch { }
                 }
             }
 

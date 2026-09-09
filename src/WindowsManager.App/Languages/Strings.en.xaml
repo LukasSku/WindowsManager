@@ -80,6 +80,20 @@
     <sys:String x:Key="Perf_Services_Warning">Disabling services may affect related Windows features. You can re-enable them anytime.</sys:String>
     <sys:String x:Key="Perf_Services_Help">Background services (e.g. telemetry collection, search indexing, printing) consume RAM and CPU even when you're not using their features. Only a curated list of commonly safe-to-disable services is shown here to avoid breaking core Windows functionality.</sys:String>
 
+    <sys:String x:Key="Perf_ScheduledTasks_Title">Scheduled Tasks</sys:String>
+    <sys:String x:Key="Perf_ScheduledTasks_Desc">Disable well-known telemetry/diagnostics tasks that run in the background.</sys:String>
+    <sys:String x:Key="Perf_ScheduledTasks_Help">Windows ships with several scheduled tasks that periodically collect and upload diagnostics/usage data (e.g. Microsoft Compatibility Appraiser, CEIP data consolidation). This curated list only contains tasks that are commonly safe to disable without affecting any visible Windows feature.</sys:String>
+
+    <sys:String x:Key="Perf_Debloat_Title">System Debloat</sys:String>
+    <sys:String x:Key="Perf_Debloat_Desc">Remove rarely-used Windows 11 extras from the background and taskbar.</sys:String>
+    <sys:String x:Key="Perf_Debloat_Help">Bundles a few small "cleanup" switches: background apps, the Widgets icon, and Copilot. Every change here is independent and fully reversible.</sys:String>
+    <sys:String x:Key="Perf_Debloat_BackgroundAppsToggle">Disable background apps (Store apps only)</sys:String>
+    <sys:String x:Key="Perf_Debloat_BackgroundAppsHelp">Turns off the global "let apps run in the background" switch. Only affects UWP/Store apps (Mail, Calendar, Xbox app, etc.) - regular desktop programs are unaffected. Store apps will then only refresh content/notifications when opened instead of automatically in the background.</sys:String>
+    <sys:String x:Key="Perf_Debloat_WidgetsToggle">Remove the Widgets icon from the taskbar</sys:String>
+    <sys:String x:Key="Perf_Debloat_WidgetsHelp">Hides the Widgets icon from the taskbar. Takes effect after restarting Explorer (see "Restart Explorer" in the Explorer Performance section) or signing out.</sys:String>
+    <sys:String x:Key="Perf_Debloat_CopilotToggle">Disable Copilot</sys:String>
+    <sys:String x:Key="Perf_Debloat_CopilotHelp">Disables Windows Copilot via policy and hides its taskbar button. Takes effect after restarting Explorer or signing out.</sys:String>
+
     <sys:String x:Key="Perf_Network_Title">Network Optimization</sys:String>
     <sys:String x:Key="Perf_Network_Desc">Reduce latency and refresh DNS settings.</sys:String>
     <sys:String x:Key="Perf_Network_NagleToggle">Disable Nagle's algorithm (lower latency)</sys:String>
@@ -92,6 +106,9 @@
     <sys:String x:Key="Perf_Network_AutoTuningHelp">TCP Auto-Tuning lets Windows automatically size the network receive window for best throughput. Keeping it "Normal" (enabled) usually gives the fastest downloads. Some older routers/VPNs mishandle this and work better with it restricted - only disable this if you have connection issues with a specific router or VPN.</sys:String>
     <sys:String x:Key="Perf_Network_AdapterPowerToggle">Disable network adapter power saving</sys:String>
     <sys:String x:Key="Perf_Network_AdapterPowerHelp">Windows can power down network adapters to save energy. On some hardware this causes brief disconnects or added latency when the adapter wakes back up. Disabling power saving keeps the adapter always fully powered, at the cost of slightly higher energy use (mainly relevant for laptops on battery).</sys:String>
+
+    <sys:String x:Key="Perf_Network_DeliveryOptimizationToggle">Restrict Delivery Optimization (no P2P sharing)</sys:String>
+    <sys:String x:Key="Perf_Network_DeliveryOptimizationHelp">Windows Update/Store downloads can be shared peer-to-peer with other PCs (on the LAN and/or over the internet) by default, to save Microsoft's bandwidth. Restricting this to plain HTTP downloads stops that background upload traffic to other devices, at the cost of slightly slower updates without local peers.</sys:String>
 
     <sys:String x:Key="Perf_Gaming_Title">Game Mode &amp; GPU</sys:String>
     <sys:String x:Key="Perf_Gaming_Desc">Optimize Windows for gaming performance.</sys:String>
@@ -108,12 +125,12 @@
     <sys:String x:Key="Perf_Explorer_RestartButton">Restart Explorer</sys:String>
     <sys:String x:Key="Perf_Explorer_RestartHelp">Restarts the explorer.exe process (taskbar and file windows will briefly disappear and reappear) so that changes like the thumbnail setting apply immediately without needing to log out.</sys:String>
 
-    <sys:String x:Key="Perf_TempCleanup_Title">Quick Temp File Cleanup</sys:String>
-    <sys:String x:Key="Perf_TempCleanup_Desc">Instantly delete temporary files without opening a separate dialog.</sys:String>
-    <sys:String x:Key="Perf_TempCleanup_Button">Clean temporary files</sys:String>
-    <sys:String x:Key="Perf_TempCleanup_Help">Deletes leftover temporary files created by Windows and installed apps (from %TEMP% and C:\Windows\Temp). This frees up disk space and can occasionally fix issues caused by corrupted temp files. Files currently in use by a running app are safely skipped.</sys:String>
-    <sys:String x:Key="Confirm_TempCleanup_Title">Delete temporary files?</sys:String>
-    <sys:String x:Key="Confirm_TempCleanup_Message">This will permanently delete temporary files from %TEMP% and C:\Windows\Temp. Files currently in use are skipped automatically. Continue?</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Title">Quick Cleanup</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Desc">Delete temp files, the Windows Update/Delivery Optimization cache, thumbnail cache, and empty the Recycle Bin - all in one click.</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Button">Clean up now</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Help">Deletes leftover temporary files created by Windows and installed apps (%TEMP%, C:\Windows\Temp), the Windows Update download cache, the Delivery Optimization cache, Explorer's thumbnail/icon cache, and empties the Recycle Bin. Files currently in use (e.g. by a running Explorer) are safely skipped instead of causing an error.</sys:String>
+    <sys:String x:Key="Confirm_TempCleanup_Title">Clean up now?</sys:String>
+    <sys:String x:Key="Confirm_TempCleanup_Message">This will permanently delete temporary files, the Windows Update/Delivery Optimization cache and the thumbnail cache, and empty the Recycle Bin. Files currently in use are skipped automatically. Continue?</sys:String>
     <sys:String x:Key="TempCleanup_Result_Title">Cleanup complete</sys:String>
     <sys:String x:Key="TempCleanup_Result_Message">Freed {0} MB by deleting {1} files ({2} files skipped because they were in use).</sys:String>
 
@@ -165,12 +182,19 @@
     <sys:String x:Key="Confirm_DisableService_Title">Disable service?</sys:String>
     <sys:String x:Key="Confirm_DisableService_Message">Are you sure you want to disable "{0}"? Related Windows features may stop working. You can re-enable it anytime.</sys:String>
 
+    <sys:String x:Key="Confirm_DisableTask_Title">Disable scheduled task?</sys:String>
+    <sys:String x:Key="Confirm_DisableTask_Message">Are you sure you want to disable "{0}"? You can re-enable it anytime.</sys:String>
+
     <sys:String x:Key="Status_Success">Change applied successfully.</sys:String>
     <sys:String x:Key="Status_Error">Something went wrong. The change may not have been applied.</sys:String>
 
     <!-- App Manager page -->
     <sys:String x:Key="AppManager_Title">App Manager</sys:String>
     <sys:String x:Key="AppManager_Subtitle">Install new software and remove apps you no longer need.</sys:String>
+
+    <sys:String x:Key="AppManager_Recommended_Title">Recommended Apps</sys:String>
+    <sys:String x:Key="AppManager_Recommended_Desc">Install popular, trusted applications with a single click.</sys:String>
+    <sys:String x:Key="AppManager_Recommended_Help">A small, hand-picked list of popular applications (browser, editor, archiver, etc.) so you don't have to search for them first. Installation uses the same winget technology as the search below.</sys:String>
 
     <sys:String x:Key="AppManager_Install_Title">Install Software</sys:String>
     <sys:String x:Key="AppManager_Install_Desc">Search the winget package catalog and install apps directly.</sys:String>
@@ -191,5 +215,15 @@
 
     <sys:String x:Key="Confirm_Uninstall_Title">Uninstall application?</sys:String>
     <sys:String x:Key="Confirm_Uninstall_Message">Are you sure you want to uninstall "{0}"? This will launch the app's own uninstaller.</sys:String>
+
+    <sys:String x:Key="AppManager_Bloatware_Title">Remove Preinstalled Apps</sys:String>
+    <sys:String x:Key="AppManager_Bloatware_Desc">Remove a curated list of rarely-used, preinstalled Windows apps.</sys:String>
+    <sys:String x:Key="AppManager_Bloatware_Help">Removes the selected app via "Remove-AppxPackage" for your user account only. This is fully reversible by reinstalling the app from the Microsoft Store. Only apps that are commonly safe to remove are offered here.</sys:String>
+    <sys:String x:Key="AppManager_RemoveButton">Remove</sys:String>
+    <sys:String x:Key="AppManager_Removing">Removing…</sys:String>
+    <sys:String x:Key="AppManager_AlreadyRemoved">Not installed</sys:String>
+
+    <sys:String x:Key="Confirm_RemoveBloatware_Title">Remove app?</sys:String>
+    <sys:String x:Key="Confirm_RemoveBloatware_Message">Are you sure you want to remove "{0}" for your user account? You can always reinstall it from the Microsoft Store later.</sys:String>
 
 </ResourceDictionary>

@@ -133,6 +133,100 @@
                     </StackPanel>
                 </Expander>
 
+                <!-- Scheduled Tasks -->
+                <Expander x:Name="ScheduledTasksSection" Style="{StaticResource SectionExpanderStyle}">
+                    <Expander.Header>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{DynamicResource Perf_ScheduledTasks_Title}" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_ScheduledTasks_Help}">
+                                    <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </Border>
+                            </StackPanel>
+                            <TextBlock Text="{DynamicResource Perf_ScheduledTasks_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Expander.Header>
+                    <StackPanel>
+                        <Button Style="{StaticResource TopBarButtonStyle}"
+                                ToolTip="{DynamicResource Common_Refresh}"
+                                HorizontalAlignment="Right" Margin="0,0,0,8"
+                                Click="RefreshScheduledTasks_Click">
+                            <TextBlock Text="&#xE72C;" FontFamily="Segoe MDL2 Assets" FontSize="14" />
+                        </Button>
+                        <TextBlock x:Name="ScheduledTasksLoadingText" Text="{DynamicResource Common_Loading}"
+                                   Foreground="{DynamicResource SecondaryTextBrush}" Visibility="Collapsed" />
+                        <ItemsControl x:Name="ScheduledTasksList" />
+                    </StackPanel>
+                </Expander>
+
+                <!-- System Debloat (background apps, widgets, copilot) -->
+                <Expander x:Name="DebloatSection" Style="{StaticResource SectionExpanderStyle}">
+                    <Expander.Header>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{DynamicResource Perf_Debloat_Title}" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Debloat_Help}">
+                                    <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </Border>
+                            </StackPanel>
+                            <TextBlock Text="{DynamicResource Perf_Debloat_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Expander.Header>
+                    <StackPanel>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Debloat_BackgroundAppsToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Debloat_BackgroundAppsHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="BackgroundAppsToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="BackgroundAppsToggle_Click" Margin="8,0,0,0" />
+                        </Grid>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Debloat_WidgetsToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Debloat_WidgetsHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="WidgetsToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="WidgetsToggle_Click" Margin="8,0,0,0" />
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Debloat_CopilotToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Debloat_CopilotHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="CopilotToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="CopilotToggle_Click" Margin="8,0,0,0" />
+                        </Grid>
+                    </StackPanel>
+                </Expander>
+
                 <!-- Quick Temp Cleanup -->
                 <Border x:Name="TempCleanupSection" Style="{StaticResource CardStyle}">
                     <StackPanel>
@@ -231,6 +325,21 @@
                             </Border>
                             <CheckBox Grid.Column="2" x:Name="AdapterPowerToggle" Style="{StaticResource ToggleSwitchStyle}"
                                       Click="AdapterPowerToggle_Click" Margin="8,0,0,0" />
+                        </Grid>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{DynamicResource Perf_Network_DeliveryOptimizationToggle}"
+                                       Foreground="{DynamicResource PrimaryTextBrush}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                            <Border Grid.Column="1" Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource Perf_Network_DeliveryOptimizationHelp}">
+                                <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+                            </Border>
+                            <CheckBox Grid.Column="2" x:Name="DeliveryOptimizationToggle" Style="{StaticResource ToggleSwitchStyle}"
+                                      Click="DeliveryOptimizationToggle_Click" Margin="8,0,0,0" />
                         </Grid>
                         <StackPanel Orientation="Horizontal">
                             <Button Content="{DynamicResource Perf_Network_FlushDnsButton}"

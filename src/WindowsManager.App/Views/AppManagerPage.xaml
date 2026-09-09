@@ -19,6 +19,25 @@
                            FontSize="14" Margin="0,4,0,20"
                            Foreground="{DynamicResource SecondaryTextBrush}" />
 
+                <!-- Recommended apps (curated one-click installs) -->
+                <Expander x:Name="RecommendedSection" Style="{StaticResource SectionExpanderStyle}" IsExpanded="True">
+                    <Expander.Header>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{DynamicResource AppManager_Recommended_Title}" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource AppManager_Recommended_Help}">
+                                    <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </Border>
+                            </StackPanel>
+                            <TextBlock Text="{DynamicResource AppManager_Recommended_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Expander.Header>
+                    <ItemsControl x:Name="RecommendedList" />
+                </Expander>
+
                 <!-- Install new software via winget -->
                 <Expander x:Name="InstallSection" Style="{StaticResource SectionExpanderStyle}" IsExpanded="True">
                     <Expander.Header>
@@ -101,6 +120,35 @@
                         <TextBlock x:Name="InstalledLoadingText" Text="{DynamicResource Common_Loading}"
                                    Foreground="{DynamicResource SecondaryTextBrush}" Visibility="Collapsed" />
                         <ItemsControl x:Name="InstalledList" />
+                    </StackPanel>
+                </Expander>
+
+                <!-- Preinstalled bloatware removal -->
+                <Expander x:Name="BloatwareSection" Style="{StaticResource SectionExpanderStyle}">
+                    <Expander.Header>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{DynamicResource AppManager_Bloatware_Title}" FontSize="16" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                <Border Style="{StaticResource HelpIconStyle}" ToolTip="{DynamicResource AppManager_Bloatware_Help}">
+                                    <TextBlock Text="?" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </Border>
+                            </StackPanel>
+                            <TextBlock Text="{DynamicResource AppManager_Bloatware_Desc}" FontSize="12" Margin="0,2,0,0"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Expander.Header>
+                    <StackPanel>
+                        <Button Style="{StaticResource TopBarButtonStyle}"
+                                ToolTip="{DynamicResource Common_Refresh}"
+                                HorizontalAlignment="Right" Margin="0,0,0,8"
+                                Click="RefreshBloatware_Click">
+                            <TextBlock Text="&#xE72C;" FontFamily="Segoe MDL2 Assets" FontSize="14" />
+                        </Button>
+                        <TextBlock x:Name="BloatwareLoadingText" Text="{DynamicResource Common_Loading}"
+                                   Foreground="{DynamicResource SecondaryTextBrush}" Visibility="Collapsed" />
+                        <ItemsControl x:Name="BloatwareList" />
                     </StackPanel>
                 </Expander>
             </StackPanel>

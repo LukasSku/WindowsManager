@@ -80,6 +80,20 @@
     <sys:String x:Key="Perf_Services_Warning">Das Deaktivieren von Diensten kann zugehörige Windows-Funktionen beeinträchtigen. Du kannst sie jederzeit wieder aktivieren.</sys:String>
     <sys:String x:Key="Perf_Services_Help">Hintergrunddienste (z. B. Telemetrie, Suchindizierung, Druckerdienste) belegen RAM/CPU, auch wenn du ihre Funktion gerade nicht nutzt. Hier wird nur eine kuratierte Liste von Diensten angezeigt, die üblicherweise gefahrlos deaktiviert werden können, um Kernfunktionen von Windows nicht zu gefährden.</sys:String>
 
+    <sys:String x:Key="Perf_ScheduledTasks_Title">Geplante Tasks</sys:String>
+    <sys:String x:Key="Perf_ScheduledTasks_Desc">Deaktiviere bekannte Telemetrie-/Diagnose-Tasks, die im Hintergrund laufen.</sys:String>
+    <sys:String x:Key="Perf_ScheduledTasks_Help">Windows bringt mehrere geplante Aufgaben mit, die regelmäßig Diagnose-/Nutzungsdaten sammeln und hochladen (z. B. Microsoft Compatibility Appraiser, CEIP-Datenkonsolidierung). Diese kuratierte Liste enthält nur Tasks, die üblicherweise gefahrlos deaktiviert werden können, ohne sichtbare Windows-Funktionen zu beeinträchtigen.</sys:String>
+
+    <sys:String x:Key="Perf_Debloat_Title">System-Debloat</sys:String>
+    <sys:String x:Key="Perf_Debloat_Desc">Entferne selten genutzte Windows-11-Extras aus Hintergrund und Taskleiste.</sys:String>
+    <sys:String x:Key="Perf_Debloat_Help">Bündelt mehrere kleine "Aufräum"-Schalter: Hintergrund-Apps, das Widgets-Symbol und Copilot. Alle Änderungen sind einzeln und jederzeit rückgängig zu machen.</sys:String>
+    <sys:String x:Key="Perf_Debloat_BackgroundAppsToggle">Hintergrund-Apps deaktivieren (nur Store-Apps)</sys:String>
+    <sys:String x:Key="Perf_Debloat_BackgroundAppsHelp">Schaltet den globalen "Apps im Hintergrund ausführen"-Schalter aus. Betrifft nur UWP/Store-Apps (Mail, Kalender, Xbox-App usw.) - normale Desktop-Programme sind davon nicht betroffen. Store-Apps aktualisieren Inhalte/Benachrichtigungen dann erst beim Öffnen statt automatisch im Hintergrund.</sys:String>
+    <sys:String x:Key="Perf_Debloat_WidgetsToggle">Widgets-Symbol aus der Taskleiste entfernen</sys:String>
+    <sys:String x:Key="Perf_Debloat_WidgetsHelp">Blendet das Widgets-Symbol in der Taskleiste aus. Wirkt nach einem Neustart des Explorers (siehe "Explorer neu starten" im Abschnitt Explorer-Leistung) oder einer Neuanmeldung.</sys:String>
+    <sys:String x:Key="Perf_Debloat_CopilotToggle">Copilot deaktivieren</sys:String>
+    <sys:String x:Key="Perf_Debloat_CopilotHelp">Deaktiviert Windows Copilot per Richtlinie und blendet dessen Taskleisten-Schaltfläche aus. Wirkt nach einem Neustart des Explorers oder einer Neuanmeldung.</sys:String>
+
     <sys:String x:Key="Perf_Network_Title">Netzwerk-Optimierung</sys:String>
     <sys:String x:Key="Perf_Network_Desc">Reduziere die Latenz und aktualisiere die DNS-Einstellungen.</sys:String>
     <sys:String x:Key="Perf_Network_NagleToggle">Nagle-Algorithmus deaktivieren (geringere Latenz)</sys:String>
@@ -92,6 +106,9 @@
     <sys:String x:Key="Perf_Network_AutoTuningHelp">TCP Auto-Tuning lässt Windows das Netzwerk-Empfangsfenster automatisch für optimalen Durchsatz anpassen. "Normal" (aktiviert) liefert meist die schnellsten Downloads. Manche älteren Router/VPNs kommen damit nicht gut klar und funktionieren besser mit eingeschränktem Auto-Tuning - nur bei konkreten Verbindungsproblemen deaktivieren.</sys:String>
     <sys:String x:Key="Perf_Network_AdapterPowerToggle">Energiesparen für Netzwerkadapter deaktivieren</sys:String>
     <sys:String x:Key="Perf_Network_AdapterPowerHelp">Windows kann Netzwerkadapter zum Energiesparen abschalten. Auf mancher Hardware verursacht das kurze Verbindungsabbrüche oder zusätzliche Latenz beim Aufwachen des Adapters. Das Deaktivieren hält den Adapter dauerhaft voll aktiv, auf Kosten eines etwas höheren Stromverbrauchs (relevant vor allem bei Laptops im Akkubetrieb).</sys:String>
+
+    <sys:String x:Key="Perf_Network_DeliveryOptimizationToggle">Delivery Optimization einschränken (kein P2P-Sharing)</sys:String>
+    <sys:String x:Key="Perf_Network_DeliveryOptimizationHelp">Windows Update-/Store-Downloads können standardmäßig per Peer-to-Peer mit anderen PCs (im LAN und/oder über das Internet) geteilt werden, um Microsofts Bandbreite zu schonen. Das Einschränken auf reine HTTP-Downloads verhindert diesen Hintergrund-Uploadverkehr zu anderen Geräten, auf Kosten etwas langsamerer Updates ohne lokale Peers.</sys:String>
 
     <sys:String x:Key="Perf_Gaming_Title">Game Mode &amp; GPU</sys:String>
     <sys:String x:Key="Perf_Gaming_Desc">Optimiere Windows für Gaming-Leistung.</sys:String>
@@ -108,12 +125,12 @@
     <sys:String x:Key="Perf_Explorer_RestartButton">Explorer neu starten</sys:String>
     <sys:String x:Key="Perf_Explorer_RestartHelp">Startet den explorer.exe-Prozess neu (Taskleiste und Dateifenster verschwinden kurz und erscheinen wieder), damit Änderungen wie die Miniaturansicht-Einstellung sofort wirken, ohne dich abmelden zu müssen.</sys:String>
 
-    <sys:String x:Key="Perf_TempCleanup_Title">Schnelle Temp-Dateien-Bereinigung</sys:String>
-    <sys:String x:Key="Perf_TempCleanup_Desc">Lösche temporäre Dateien sofort, ohne einen separaten Dialog zu öffnen.</sys:String>
-    <sys:String x:Key="Perf_TempCleanup_Button">Temporäre Dateien löschen</sys:String>
-    <sys:String x:Key="Perf_TempCleanup_Help">Löscht übrig gebliebene temporäre Dateien von Windows und installierten Apps (aus %TEMP% und C:\Windows\Temp). Das gibt Speicherplatz frei und kann gelegentlich Probleme durch beschädigte Temp-Dateien beheben. Dateien, die gerade von einer laufenden App genutzt werden, werden sicher übersprungen.</sys:String>
-    <sys:String x:Key="Confirm_TempCleanup_Title">Temporäre Dateien löschen?</sys:String>
-    <sys:String x:Key="Confirm_TempCleanup_Message">Dadurch werden temporäre Dateien aus %TEMP% und C:\Windows\Temp dauerhaft gelöscht. Dateien, die gerade in Benutzung sind, werden automatisch übersprungen. Fortfahren?</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Title">Schnelle Bereinigung</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Desc">Lösche Temp-Dateien, Update-/Delivery-Optimization-Cache, Miniaturansichten-Cache und leere den Papierkorb - alles in einem Klick.</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Button">Jetzt bereinigen</sys:String>
+    <sys:String x:Key="Perf_TempCleanup_Help">Löscht übrig gebliebene temporäre Dateien von Windows und installierten Apps (%TEMP%, C:\Windows\Temp), den Windows-Update-Downloadcache, den Delivery-Optimization-Cache, den Explorer-Miniaturansichten-/Symbol-Cache und leert den Papierkorb. Dateien, die gerade in Benutzung sind (z. B. vom laufenden Explorer), werden sicher übersprungen statt einen Fehler zu verursachen.</sys:String>
+    <sys:String x:Key="Confirm_TempCleanup_Title">Jetzt bereinigen?</sys:String>
+    <sys:String x:Key="Confirm_TempCleanup_Message">Dadurch werden temporäre Dateien, der Windows-Update-/Delivery-Optimization-Cache und der Miniaturansichten-Cache dauerhaft gelöscht und der Papierkorb geleert. Dateien, die gerade in Benutzung sind, werden automatisch übersprungen. Fortfahren?</sys:String>
     <sys:String x:Key="TempCleanup_Result_Title">Bereinigung abgeschlossen</sys:String>
     <sys:String x:Key="TempCleanup_Result_Message">{0} MB freigegeben durch Löschen von {1} Dateien ({2} Dateien übersprungen, da in Benutzung).</sys:String>
 
@@ -165,12 +182,19 @@
     <sys:String x:Key="Confirm_DisableService_Title">Dienst deaktivieren?</sys:String>
     <sys:String x:Key="Confirm_DisableService_Message">Möchtest du "{0}" wirklich deaktivieren? Zugehörige Windows-Funktionen könnten nicht mehr funktionieren. Du kannst den Dienst jederzeit wieder aktivieren.</sys:String>
 
+    <sys:String x:Key="Confirm_DisableTask_Title">Geplante Aufgabe deaktivieren?</sys:String>
+    <sys:String x:Key="Confirm_DisableTask_Message">Möchtest du "{0}" wirklich deaktivieren? Du kannst die Aufgabe jederzeit wieder aktivieren.</sys:String>
+
     <sys:String x:Key="Status_Success">Änderung erfolgreich übernommen.</sys:String>
     <sys:String x:Key="Status_Error">Etwas ist schiefgelaufen. Die Änderung wurde möglicherweise nicht übernommen.</sys:String>
 
     <!-- App-Verwaltung -->
     <sys:String x:Key="AppManager_Title">App-Verwaltung</sys:String>
     <sys:String x:Key="AppManager_Subtitle">Installiere neue Software und entferne Programme, die du nicht mehr brauchst.</sys:String>
+
+    <sys:String x:Key="AppManager_Recommended_Title">Empfohlene Apps</sys:String>
+    <sys:String x:Key="AppManager_Recommended_Desc">Beliebte, vertrauenswürdige Programme direkt mit einem Klick installieren.</sys:String>
+    <sys:String x:Key="AppManager_Recommended_Help">Eine kleine, handverlesene Liste populärer Programme (Browser, Editor, Archivierung usw.), damit du sie nicht erst suchen musst. Installation läuft über dieselbe winget-Technik wie die Suche unten.</sys:String>
 
     <sys:String x:Key="AppManager_Install_Title">Software installieren</sys:String>
     <sys:String x:Key="AppManager_Install_Desc">Durchsuche den winget-Paketkatalog und installiere Apps direkt.</sys:String>
@@ -191,5 +215,15 @@
 
     <sys:String x:Key="Confirm_Uninstall_Title">Programm deinstallieren?</sys:String>
     <sys:String x:Key="Confirm_Uninstall_Message">Möchtest du "{0}" wirklich deinstallieren? Dies startet den eigenen Deinstaller des Programms.</sys:String>
+
+    <sys:String x:Key="AppManager_Bloatware_Title">Vorinstallierte Apps entfernen</sys:String>
+    <sys:String x:Key="AppManager_Bloatware_Desc">Entferne eine kuratierte Liste selten genutzter, vorinstallierter Windows-Apps.</sys:String>
+    <sys:String x:Key="AppManager_Bloatware_Help">Entfernt die ausgewählte App per "Remove-AppxPackage" nur für dein Benutzerkonto. Das ist jederzeit über eine Neuinstallation aus dem Microsoft Store rückgängig zu machen. Es werden nur Apps angeboten, die üblicherweise gefahrlos entfernt werden können.</sys:String>
+    <sys:String x:Key="AppManager_RemoveButton">Entfernen</sys:String>
+    <sys:String x:Key="AppManager_Removing">Wird entfernt…</sys:String>
+    <sys:String x:Key="AppManager_AlreadyRemoved">Nicht installiert</sys:String>
+
+    <sys:String x:Key="Confirm_RemoveBloatware_Title">App entfernen?</sys:String>
+    <sys:String x:Key="Confirm_RemoveBloatware_Message">Möchtest du "{0}" wirklich für dein Benutzerkonto entfernen? Du kannst die App jederzeit über den Microsoft Store neu installieren.</sys:String>
 
 </ResourceDictionary>

@@ -25,6 +25,8 @@ namespace WindowsManager.App.Views
             LoadStartupItems();
             LoadVisualEffectsState();
             LoadServices();
+            LoadScheduledTasks();
+            LoadDebloatState();
             LoadNetworkState();
             LoadGamingState();
             LoadExplorerState();
@@ -190,6 +192,140 @@ namespace WindowsManager.App.Views
             ServicesList.Visibility = Visibility.Visible;
         }
 
+        private void RefreshScheduledTasks_Click(object sender, RoutedEventArgs e) => LoadScheduledTasks();
+
+        private async void LoadScheduledTasks()
+        {
+            ScheduledTasksLoadingText.Visibility = Visibility.Visible;
+            ScheduledTasksList.Visibility = Visibility.Collapsed;
+
+            List<ScheduledTaskInfo>? tasks = null;
+            try
+            {
+                tasks = await Task.Run(ScheduledTaskService.GetTasks);
+            }
+            catch
+            {
+                // handled below via null check
+            }
+
+            var panel = new StackPanel();
+
+            if (tasks is null)
+            {
+                panel.Children.Add(NotAvailableText());
+            }
+            else
+            {
+                foreach (var task in tasks)
+                {
+                    if (!task.Exists)
+                    {
+                        continue;
+                    }
+
+                    var row = BuildToggleRow(task.DisplayName, task.IsEnabled, enabled =>
+                    {
+                        if (!enabled)
+                        {
+                            var message = string.Format((string)FindResource("Confirm_DisableTask_Message"), task.DisplayName);
+                            var title = (string)FindResource("Confirm_DisableTask_Title");
+                            var result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                            if (result != MessageBoxResult.Yes)
+                            {
+                                // User cancelled - revert the toggle back to enabled.
+                                LoadScheduledTasks();
+                                return;
+                            }
+                        }
+
+                        RunWithFeedback(() => ScheduledTaskService.SetEnabled(task.Path, enabled));
+                    });
+                    panel.Children.Add(row);
+                }
+            }
+
+            ScheduledTasksList.Items.Clear();
+            ScheduledTasksList.Items.Add(panel);
+            ScheduledTasksLoadingText.Visibility = Visibility.Collapsed;
+            ScheduledTasksList.Visibility = Visibility.Visible;
+        }
+
+        private void LoadDebloatState()
+        {
+            try
+            {
+                BackgroundAppsToggle.IsChecked = BackgroundAppsService.IsDisabled();
+            }
+            catch
+            {
+                BackgroundAppsToggle.IsEnabled = false;
+            }
+
+            try
+            {
+                WidgetsToggle.IsChecked = WindowsUiTweaksService.IsWidgetsDisabled();
+            }
+            catch
+            {
+                WidgetsToggle.IsEnabled = false;
+            }
+
+            try
+            {
+                CopilotToggle.IsChecked = WindowsUiTweaksService.IsCopilotDisabled();
+            }
+            catch
+            {
+                CopilotToggle.IsEnabled = false;
+            }
+        }
+
+        private void BackgroundAppsToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var disabled = BackgroundAppsToggle.IsChecked == true;
+            try
+            {
+                BackgroundAppsService.SetDisabled(disabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                BackgroundAppsToggle.IsChecked = !disabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void WidgetsToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var disabled = WidgetsToggle.IsChecked == true;
+            try
+            {
+                WindowsUiTweaksService.SetWidgetsDisabled(disabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                WidgetsToggle.IsChecked = !disabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void CopilotToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var disabled = CopilotToggle.IsChecked == true;
+            try
+            {
+                WindowsUiTweaksService.SetCopilotDisabled(disabled);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                CopilotToggle.IsChecked = !disabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
         private FrameworkElement BuildToggleRow(string label, bool isChecked, Action<bool> onToggled)
         {
             var grid = new Grid { Margin = new Thickness(0, 4, 0, 4) };
@@ -309,6 +445,15 @@ namespace WindowsManager.App.Views
             {
                 AdapterPowerToggle.IsEnabled = false;
             }
+
+            try
+            {
+                DeliveryOptimizationToggle.IsChecked = NetworkOptimizationService.IsDeliveryOptimizationRestricted();
+            }
+            catch
+            {
+                DeliveryOptimizationToggle.IsEnabled = false;
+            }
         }
 
         private void NagleToggle_Click(object sender, RoutedEventArgs e)
@@ -372,6 +517,21 @@ namespace WindowsManager.App.Views
             catch
             {
                 AdapterPowerToggle.IsChecked = !disabled;
+                ShowStatus((string)FindResource("Status_Error"), success: false);
+            }
+        }
+
+        private void DeliveryOptimizationToggle_Click(object sender, RoutedEventArgs e)
+        {
+            var restricted = DeliveryOptimizationToggle.IsChecked == true;
+            try
+            {
+                NetworkOptimizationService.SetDeliveryOptimizationRestricted(restricted);
+                ShowStatus((string)FindResource("Status_Success"), success: true);
+            }
+            catch
+            {
+                DeliveryOptimizationToggle.IsChecked = !restricted;
                 ShowStatus((string)FindResource("Status_Error"), success: false);
             }
         }
